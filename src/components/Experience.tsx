@@ -30,18 +30,13 @@ const Experience: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          animate(
-            {
-              targets: ".timeline-item",
-            },
-            {
-              opacity: [0, 1],
-              translateY: [20, 0],
-              delay: stagger(200),
-              easing: "easeOutExpo",
-              duration: 800,
-            }
-          );
+          animate(".timeline-item", {
+            opacity: [0, 1],
+            translateY: [20, 0],
+            delay: stagger(200),
+            easing: "outExpo",
+            duration: 800,
+          });
           observer.unobserve(entries[0].target);
         }
       },

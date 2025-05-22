@@ -15,14 +15,12 @@ const Languages: React.FC = () => {
       (entries) => {
         if (entries[0].isIntersecting) {
           animate(
-            {
-              targets: ".language-item",
-            },
+            ".language-item",
             {
               opacity: [0, 1],
               translateY: [20, 0],
               delay: stagger(150),
-              easing: "easeOutExpo",
+              easing: "outExpo",
               duration: 800,
             }
           );

@@ -48,14 +48,13 @@ const Projects: React.FC = () => {
       (entries) => {
         if (entries[0].isIntersecting) {
           animate(
-            {
-              targets: ".project-card",
-            },
+            ".project-card",
+            
             {
               opacity: [0, 1],
               translateY: [20, 0],
               delay: stagger(100),
-              easing: "easeOutExpo",
+              easing: "outExpo",
               duration: 800,
             }
           );
