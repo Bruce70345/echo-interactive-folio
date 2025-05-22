@@ -26,7 +26,7 @@ const About: React.FC = () => {
         "Robotics",
         "Web Development",
         "fast pace",
-        "tight deadlines",
+        "under tight deadlines",
         "Enthusiastic team player",
       ],
       zh: [
@@ -37,7 +37,7 @@ const About: React.FC = () => {
         "機器人",
         "網頁開發",
         "快節奏",
-        "緊迫的期限",
+        "在緊迫的期限內交付",
         "熱情的團隊合作者",
       ],
       it: [
@@ -48,7 +48,7 @@ const About: React.FC = () => {
         "Robotica",
         "Sviluppo Web",
         "ritmo sostenuto",
-        "scadenze strette",
+        "rispettando scadenze strette",
         "Entusiasta giocatore di squadra",
       ],
       mi: [

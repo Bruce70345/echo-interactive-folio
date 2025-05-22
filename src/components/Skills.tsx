@@ -41,6 +41,8 @@ const Skills: React.FC = () => {
   const [category, setCategory] = useState("All");
   const [filteredSkills, setFilteredSkills] = useState(skills);
   const contentRef = useRef<HTMLDivElement>(null);
+  const [pressTimer, setPressTimer] = useState<NodeJS.Timeout | null>(null);
+  const [pressedCardId, setPressedCardId] = useState<string | null>(null);
 
   useEffect(() => {
     if (category === "All") {
@@ -77,6 +79,90 @@ const Skills: React.FC = () => {
       }
     };
   }, [filteredSkills]);
+
+  // 處理卡片點擊事件
+  const handleCardClick = (skillName: string) => {
+    const cardElement = document.querySelector(
+      `.skill-card-${skillName.replace(/\s+/g, "-").toLowerCase()}`
+    );
+
+    // if (cardElement) {
+    //   // 首先移除動畫類，以便能夠重新觸發
+    //   cardElement.classList.remove("card-shadow-animation");
+
+    //   // 強制重繪，以確保類的移除生效
+    //   void (cardElement as HTMLElement).offsetWidth;
+
+    //   // 添加動畫類，觸發陰影脈衝動畫
+    //   cardElement.classList.add("card-shadow-animation");
+    // }
+
+    // animate(cardElement, {
+    //   boxShadow: [
+    //     {
+    //       to: stagger([1, 0.25], {
+    //         modifier: (v) => `0 0 ${v * 30}px ${v * 20}px currentColor`,
+    //         from: "center",
+    //       }),
+    //     },
+    //     { to: 0 },
+    //   ],
+    //   delay: stagger(100, { from: "center" }),
+    //   loop: false,
+    // });
+  };
+
+  // 處理卡片長按開始事件
+  const handleCardPressStart = (skillName: string) => {
+    // 清除先前的計時器
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+    }
+
+    // 設置新的計時器
+    const timer = setTimeout(() => {
+      setPressedCardId(skillName);
+      const cardElement = document.querySelector(
+        `.skill-card-${skillName.replace(/\s+/g, "-").toLowerCase()}`
+      );
+
+      if (cardElement) {
+        // 放大效果
+        animate(cardElement, {
+          scale: 0.9,
+          duration: 300,
+          easing: "outQuad",
+        });
+      }
+    }, 300); // 300毫秒後觸發長按
+
+    setPressTimer(timer);
+  };
+
+  // 處理卡片長按結束事件
+  const handleCardPressEnd = (skillName: string) => {
+    // 清除計時器
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+      setPressTimer(null);
+    }
+
+    // 如果卡片已被放大，還原其大小
+    if (pressedCardId === skillName) {
+      setPressedCardId(null);
+      const cardElement = document.querySelector(
+        `.skill-card-${skillName.replace(/\s+/g, "-").toLowerCase()}`
+      );
+
+      if (cardElement) {
+        animate(cardElement, {
+          scale: 1,
+          duration: 300,
+          easing: "easeOutQuad",
+        });
+      }
+    }
+  };
 
   // 獲取技能對應的專業圖示
   const getSkillIcon = (skillName: string) => {
@@ -187,7 +273,7 @@ const Skills: React.FC = () => {
               key={cat}
               value={cat}
               onClick={() => setCategory(cat)}
-              className="mb-2 text-xs md:text-sm"
+              className="mb-2 text-sm md:text-sm"
             >
               {getCategoryTranslation(cat)}
             </TabsTrigger>
@@ -200,11 +286,19 @@ const Skills: React.FC = () => {
         >
           {categories.map((cat) => (
             <TabsContent key={cat} value={cat} className="mt-0 h-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4 justify-items-center">
                 {filteredSkills.map((skill) => (
                   <Card
                     key={skill.name}
-                    className="skill-card opacity-0 hover:shadow-lg transition-all duration-300 border-[1px] border-gray-200 dark:border-gray-800"
+                    className={`skill-card skill-card-${skill.name
+                      .replace(/\s+/g, "-")
+                      .toLowerCase()} opacity-0 hover:shadow-lg transition-all duration-300 border-[1px] border-gray-200 dark:border-gray-800 cursor-pointer w-[90%] mt-2 noselect`}
+                    onClick={() => handleCardClick(skill.name)}
+                    onMouseDown={() => handleCardPressStart(skill.name)}
+                    onMouseUp={() => handleCardPressEnd(skill.name)}
+                    onMouseLeave={() => handleCardPressEnd(skill.name)}
+                    onTouchStart={() => handleCardPressStart(skill.name)}
+                    onTouchEnd={() => handleCardPressEnd(skill.name)}
                   >
                     <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
                       <CardTitle className="text-sm font-medium flex items-center">
