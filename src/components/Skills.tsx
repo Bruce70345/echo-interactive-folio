@@ -1,98 +1,120 @@
-
-import React, { useEffect, useRef, useState } from 'react';
-import { useLanguage } from '@/context/LanguageContext';
-import { skills } from '@/data/profile';
-import { Code, Database, Globe, CircleCheck, Bot } from 'lucide-react';
-import anime from 'animejs/lib/anime.es.js';
-import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import React, { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { skills } from "@/data/profile";
+import { Code, Database, Globe, CircleCheck, Bot } from "lucide-react";
+import anime from "@/lib/anime";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Skills: React.FC = () => {
   const { language } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [category, setCategory] = useState('All');
+  const [category, setCategory] = useState("All");
   const [filteredSkills, setFilteredSkills] = useState(skills);
-  
+
   useEffect(() => {
-    if (category === 'All') {
+    if (category === "All") {
       setFilteredSkills(skills);
     } else {
-      setFilteredSkills(skills.filter(skill => skill.category === category));
+      setFilteredSkills(skills.filter((skill) => skill.category === category));
     }
   }, [category]);
-  
+
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        anime({
-          targets: '.skill-card',
-          opacity: [0, 1],
-          translateY: [20, 0],
-          delay: anime.stagger(100),
-          easing: 'easeOutExpo',
-          duration: 800
-        });
-        observer.unobserve(entries[0].target);
-      }
-    }, { threshold: 0.1 });
-    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          anime({
+            targets: ".skill-card",
+            opacity: [0, 1],
+            translateY: [20, 0],
+            delay: anime.stagger(100),
+            easing: "easeOutExpo",
+            duration: 800,
+          });
+          observer.unobserve(entries[0].target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-    
+
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
     };
   }, [filteredSkills]);
-  
+
   const getIcon = (category: string) => {
     switch (category) {
-      case 'Programming':
-        return <Code className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
-      case 'AI/Machine Learning':
-        return <Bot className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
-      case 'Web & API':
-        return <Globe className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
-      case 'Database':
-        return <Database className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
-      case 'Testing & Version Control':
-        return <CircleCheck className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
-      case 'Robotics & Vision':
-        return <Bot className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
+      case "Programming":
+        return (
+          <Code className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />
+        );
+      case "AI/Machine Learning":
+        return (
+          <Bot className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />
+        );
+      case "Web & API":
+        return (
+          <Globe className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />
+        );
+      case "Database":
+        return (
+          <Database className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />
+        );
+      case "Testing & Version Control":
+        return (
+          <CircleCheck className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />
+        );
+      case "Robotics & Vision":
+        return (
+          <Bot className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />
+        );
       default:
         return null;
     }
   };
-  
-  const categories = ['All', 'Programming', 'AI/Machine Learning', 'Web & API', 'Database', 'Testing & Version Control', 'Robotics & Vision'];
-  
+
+  const categories = [
+    "All",
+    "Programming",
+    "AI/Machine Learning",
+    "Web & API",
+    "Database",
+    "Testing & Version Control",
+    "Robotics & Vision",
+  ];
+
   return (
-    <section id="skills" ref={sectionRef} className="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+    <section
+      id="skills"
+      ref={sectionRef}
+      className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+    >
       <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-        {language === 'en' ? 'Skills' : '技能'}
+        {language === "en" ? "Skills" : "技能"}
       </h2>
-      
+
       <Tabs defaultValue="All" className="mb-8">
         <TabsList className="mb-8">
-          {categories.map(cat => (
-            <TabsTrigger 
-              key={cat}
-              value={cat}
-              onClick={() => setCategory(cat)}
-            >
-              {language === 'en' ? cat : cat}
+          {categories.map((cat) => (
+            <TabsTrigger key={cat} value={cat} onClick={() => setCategory(cat)}>
+              {language === "en" ? cat : cat}
             </TabsTrigger>
           ))}
         </TabsList>
-        
-        {categories.map(cat => (
+
+        {categories.map((cat) => (
           <TabsContent key={cat} value={cat} className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredSkills.map((skill) => (
-                <Card 
+                <Card
                   key={skill.name}
                   className="skill-card opacity-0 hover:shadow-lg transition-all duration-300 border-[1px] border-gray-200 dark:border-gray-800"
                 >
@@ -103,7 +125,9 @@ const Skills: React.FC = () => {
                     </CardTitle>
                     <div className="text-gray-500 dark:text-gray-400">
                       {skill.level}
-                      <Badge variant="secondary" className="ml-2">{language === 'en' ? 'Years' : '年'}</Badge>
+                      <Badge variant="secondary" className="ml-2">
+                        {language === "en" ? "Years" : "年"}
+                      </Badge>
                     </div>
                   </CardHeader>
                   <CardContent>

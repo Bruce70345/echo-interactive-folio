@@ -1,67 +1,73 @@
-
-import React, { useEffect, useRef } from 'react';
-import { useLanguage } from '@/context/LanguageContext';
-import { languages } from '@/data/profile';
-import anime from 'animejs/lib/anime.es.js';
+import React, { useEffect, useRef } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { languages } from "@/data/profile";
+import anime from "@/lib/anime";
 
 const Languages: React.FC = () => {
   const { language } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        anime({
-          targets: '.language-item',
-          opacity: [0, 1],
-          translateY: [20, 0],
-          delay: anime.stagger(150),
-          easing: 'easeOutExpo',
-          duration: 800
-        });
-        observer.unobserve(entries[0].target);
-      }
-    }, { threshold: 0.1 });
-    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          anime({
+            targets: ".language-item",
+            opacity: [0, 1],
+            translateY: [20, 0],
+            delay: anime.stagger(150),
+            easing: "easeOutExpo",
+            duration: 800,
+          });
+          observer.unobserve(entries[0].target);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     }
-    
+
     return () => {
       if (sectionRef.current) {
         observer.unobserve(sectionRef.current);
       }
     };
   }, []);
-  
+
   const getProgressWidth = (level: string) => {
     switch (level.toLowerCase()) {
-      case 'native':
-      case '母語':
-        return '100%';
-      case 'fluent':
-      case '流利':
-        return '90%';
-      case 'advanced':
-      case '高級':
-        return '80%';
-      case 'intermediate':
-      case '中級':
-        return '60%';
-      case 'beginner':
-      case '初級':
-        return '30%';
+      case "native":
+      case "母語":
+        return "100%";
+      case "fluent":
+      case "流利":
+        return "90%";
+      case "advanced":
+      case "高級":
+        return "80%";
+      case "intermediate":
+      case "中級":
+        return "60%";
+      case "beginner":
+      case "初級":
+        return "30%";
       default:
-        return '50%';
+        return "50%";
     }
   };
-  
+
   return (
-    <section id="languages" ref={sectionRef} className="py-20 px-6 md:px-12 max-w-7xl mx-auto">
+    <section
+      id="languages"
+      ref={sectionRef}
+      className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+    >
       <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
-        {language === 'en' ? 'Languages' : '語言能力'}
+        {language === "en" ? "Languages" : "語言能力"}
       </h2>
-      
+
       <div className="max-w-2xl mx-auto space-y-6">
         {languages.map((lang, index) => (
           <div key={index} className="language-item opacity-0">
@@ -76,9 +82,9 @@ const Languages: React.FC = () => {
                 {lang.level[language]}
               </span>
             </div>
-            
+
             <div className="w-full h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-              <div 
+              <div
                 className="h-full bg-[#64ffda] rounded-full transition-all duration-1000"
                 style={{ width: getProgressWidth(lang.level[language]) }}
               ></div>
