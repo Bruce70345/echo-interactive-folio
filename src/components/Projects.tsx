@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { projects } from '@/data/profile';
-import * as anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Github, ExternalLink, FileImage, FileText } from 'lucide-react';

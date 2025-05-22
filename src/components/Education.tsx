@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { education } from '@/data/profile';
-import * as anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { CalendarDays } from 'lucide-react';
 

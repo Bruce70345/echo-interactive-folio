@@ -4,7 +4,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { experiences } from '@/data/profile';
 import { CalendarDays } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
-import * as anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { cn } from '@/lib/utils';
 

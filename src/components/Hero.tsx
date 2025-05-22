@@ -1,7 +1,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { Linkedin, Github } from 'lucide-react';
-import * as anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 import { useLanguage } from '@/context/LanguageContext';
 import { Button } from '@/components/ui/button';
 

@@ -1,8 +1,9 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { skills } from '@/data/profile';
 import { Code, Database, Globe, CircleCheck, Bot } from 'lucide-react';
-import * as anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
