@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { languages } from "@/data/profile";
-import anime from "@/lib/anime";
+// import anime from "@/lib/anime";
+import { animate, utils, stagger } from "animejs";
 import { useTranslation } from "react-i18next";
 
 const Languages: React.FC = () => {
@@ -13,14 +14,18 @@ const Languages: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          anime({
-            targets: ".language-item",
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: anime.stagger(150),
-            easing: "easeOutExpo",
-            duration: 800,
-          });
+          animate(
+            {
+              targets: ".language-item",
+            },
+            {
+              opacity: [0, 1],
+              translateY: [20, 0],
+              delay: stagger(150),
+              easing: "easeOutExpo",
+              duration: 800,
+            }
+          );
           observer.unobserve(entries[0].target);
         }
       },

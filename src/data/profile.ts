@@ -90,9 +90,9 @@ export const projects: Project[] = [
 
 export const skills: Skill[] = [
   { name: "Python", category: "Programming", level: 5 },
-  { name: "TensorFlow", category: "AI/Machine Learning", level: 4 },
-  { name: "MATLAB", category: "AI/Machine Learning", level: 4 },
-  { name: "Reinforcement Learning", category: "AI/Machine Learning", level: 4 },
+  { name: "TensorFlow", category: "AI / Machine Learning", level: 4 },
+  { name: "MATLAB", category: "AI / Machine Learning", level: 4 },
+  { name: "Reinforcement Learning", category: "AI / Machine Learning", level: 4 },
   { name: "Computer Vision", category: "Robotics & Vision", level: 4 },
   { name: "C", category: "Programming", level: 4 },
   { name: "Java", category: "Programming", level: 4 },
@@ -286,15 +286,15 @@ export const languages: LanguageItem[] = [
 
 export const summary = {
   short: {
-    en: "Detail-oriented, organized, and meticulous software engineer specializing in AI, Robotics, and Web Development. Works at a fast pace to meet tight deadlines. Enthusiastic team player ready to contribute to company success.",
-    zh: "細心、有條理且一絲不苟的軟件工程師，專注於人工智能、機器人和網頁開發。以快節奏工作以滿足緊迫的期限。熱情的團隊合作者，準備為公司的成功做出貢獻。",
-    it: "Ingegnere del software orientato ai dettagli, organizzato e meticoloso, specializzato in IA, Robotica e Sviluppo Web. Lavora a ritmo sostenuto per rispettare scadenze strette. Entusiasta giocatore di squadra pronto a contribuire al successo dell'azienda.",
-    mi: "He kaihangarau roro mohio e aro ana ki nga taipitopito, whakaritea, me te tika e motuhake ana ki AI, Robotics, me te Whakawhanake Tukutuku. Mahi i te kato tere ki te tutuki i nga wa mutunga maukati. He kaitakaro roopu hihiko e rite ana ki te whai waahi ki te angitu o te kamupene.",
+    en: "Dedicated software engineer with expertise in AI, Robotics, and Web Development. Thrives in fast-paced environments and excels at meeting deadlines. A proactive team player committed to delivering impactful solutions.",
+    zh: "專注於人工智慧、機器人與網頁開發的軟體工程師，能在高壓環境中迅速達成目標，積極參與團隊合作，致力於提供具影響力的解決方案。",
+    it: "Ingegnere del software con competenze in IA, Robotica e Sviluppo Web. Si distingue per la capacità di operare efficacemente in ambienti dinamici e per il rispetto delle scadenze. Collaboratore proattivo orientato a soluzioni di impatto.",
+    mi: "He kaipūkaha pūmanawa rorohiko mātanga ki te AI, Robotics me te Whakawhanake Tukutuku. Ka mahi kaha i raro i ngā taumahatanga, ā, he mema o te rōpū e ū ana ki te whakatutuki i ngā otinga whai hua.",
   },
   long: {
-    en: "Detail-oriented, organized, and meticulous employee. Works at a fast pace to meet tight deadlines. Enthusiastic team player ready to contribute to company success. Skilled at adapting quickly to new challenges and leveraging technical expertise to deliver impactful results in AI, Robotics, and Web Development domains.",
-    zh: "細心、有條理且一絲不苟的員工。以快節奏工作以滿足緊迫的期限。熱情的團隊合作者，準備為公司的成功做出貢獻。擅長快速適應新挑戰並利用技術專長在人工智能、機器人和網頁開發領域提供有影響力的結果。",
-    it: "Dipendente orientato ai dettagli, organizzato e meticoloso. Lavora a ritmo sostenuto per rispettare scadenze strette. Entusiasta giocatore di squadra pronto a contribuire al successo dell'azienda. Abile nell'adattarsi rapidamente a nuove sfide e sfruttare competenze tecniche per offrire risultati significativi nei domini di IA, Robotica e Sviluppo Web.",
-    mi: "He kaimahi e aro ana ki nga taipitopito, whakaritea, me te tika. Mahi i te kato tere ki te tutuki i nga wa mutunga maukati. He kaitakaro roopu hihiko e rite ana ki te whai waahi ki te angitu o te kamupene. He mohio ki te urutau tere ki nga wero hou me te whakamahi i te tohungatanga hangarau ki te tuku hua whai hua i roto i nga rohe AI, Robotics, me te Whakawhanake Tukutuku.",
+    en: "A detail-oriented software engineer specializing in AI, Robotics, and Web Development. Demonstrates strong organizational skills and the ability to adapt quickly to new challenges. Committed to delivering high-quality results under tight deadlines and contributing positively to team objectives.",
+    zh: "一位注重細節的軟體工程師，專長於人工智慧、機器人與網頁開發。具備良好的組織能力，能迅速適應新挑戰，致力於在緊迫的期限內交付高品質成果，並積極貢獻於團隊目標。",
+    it: "Ingegnere del software attento ai dettagli, specializzato in IA, Robotica e Sviluppo Web. Dimostra eccellenti capacità organizzative e adattabilità a nuove sfide. Impegnato a fornire risultati di alta qualità rispettando scadenze strette e contribuendo positivamente agli obiettivi del team.",
+    mi: "He kaipūkaha pūmanawa rorohiko e aro ana ki ngā taipitopito, he mātanga ki te AI, Robotics me te Whakawhanake Tukutuku. He kaha ki te whakarite me te urutau tere ki ngā wero hou. E ū ana ki te tuku hua kounga tiketike i raro i ngā wā mutunga poto, ā, he kaitākaro rōpū pai hoki.",
   },
 };

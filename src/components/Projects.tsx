@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { projects } from "@/data/profile";
-import anime from "@/lib/anime";
+// import anime from "@/lib/anime";
+import { animate, utils, stagger } from "animejs";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Github, ExternalLink, FileImage, FileText } from "lucide-react";
@@ -46,14 +47,18 @@ const Projects: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          anime({
-            targets: ".project-card",
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: anime.stagger(100),
-            easing: "easeOutExpo",
-            duration: 800,
-          });
+          animate(
+            {
+              targets: ".project-card",
+            },
+            {
+              opacity: [0, 1],
+              translateY: [20, 0],
+              delay: stagger(100),
+              easing: "easeOutExpo",
+              duration: 800,
+            }
+          );
           observer.unobserve(entries[0].target);
         }
       },

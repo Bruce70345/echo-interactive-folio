@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Linkedin, Github } from "lucide-react";
-import anime from "@/lib/anime";
+// import anime from "@/lib/anime";
+import { animate, utils, stagger, createTimeline } from "animejs";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
@@ -17,8 +18,8 @@ const Hero: React.FC = () => {
 
   const heroAnimation = () => {
     if (containerRef.current) {
-      // 重置任何現有的動畫狀態
-      anime.remove([
+      // 移除目標元素的所有動畫
+      utils.remove([
         ".hero-firstname .letter",
         ".hero-lastname .letter",
         ".hero-subtitle",
@@ -26,39 +27,55 @@ const Hero: React.FC = () => {
         ".hero-buttons",
       ]);
 
-      const timeline = anime.timeline({
-        easing: "easeOutExpo",
+      // 設定目標元素的初始樣式
+      utils.set(
+        [
+          ".hero-firstname .letter",
+          ".hero-lastname .letter",
+          ".hero-subtitle",
+          ".hero-tagline",
+          ".hero-buttons",
+        ],
+        {
+          opacity: 0,
+          translateY: 60,
+        }
+      );
+
+      // const timeline = createTimeline({
+      //   easing: "easeOutExpo",
+      // });
+      const timeline = createTimeline({
+        defaults: {
+          ease: "outExpo",
+          // duration: 2000,
+        },
       });
 
       timeline
-        .add({
-          targets: [".hero-firstname .letter", ".hero-lastname .letter"],
+        .add([".hero-firstname .letter", ".hero-lastname .letter"], {
           opacity: [0, 1],
-          translateY: [20, 0],
+          translateY: [60, 0],
           translateZ: 0,
-          duration: 1400,
-          delay: (el, i) => 300 + 30 * i,
+          delay: (el, i) => 500 + 80 * i,
         })
-        .add({
-          targets: ".hero-subtitle",
+        .add(".hero-subtitle", {
           opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 800,
-          offset: "-=800",
+          translateY: [60, 0],
+          duration: 1200,
+          offset: "-=1200",
         })
-        .add({
-          targets: ".hero-tagline",
+        .add(".hero-tagline", {
           opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 800,
-          offset: "-=600",
+          translateY: [60, 0],
+          duration: 1200,
+          offset: "-=1000",
         })
-        .add({
-          targets: ".hero-buttons",
+        .add(".hero-buttons", {
           opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 800,
-          offset: "-=400",
+          translateY: [60, 0],
+          duration: 1200,
+          offset: "-=1000",
         });
 
       animationRef.current = true;
@@ -100,7 +117,7 @@ const Hero: React.FC = () => {
     <div
       id="hero"
       ref={containerRef}
-      className="min-h-screen flex flex-col justify-center items-start px-6 md:px-12 pt-16 max-w-7xl mx-auto"
+      className="min-h-screen flex flex-col justify-center items-start px-6 md:px-12 max-w-7xl mx-auto"
     >
       <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 flex flex-wrap">
         <span className="hero-firstname mr-4">{firstNameLetters}</span>
@@ -109,8 +126,14 @@ const Hero: React.FC = () => {
           — {t("hero.title")}
         </span>
       </h1>
-
-      <p className="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4">
+      <div className="w-[50%] md:w-[25%] self-end">
+        <div className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center lg:absolute lg:top-[30%] lg:right-[20%] lg:w-[20%]">
+          {/* Placeholder for avatar - replace with actual image */}
+          {/* <span className="text-4xl">RC</span> */}
+          <img src="src/data/Square-FakeAvatar.png" alt="Avatar" />
+        </div>
+      </div>
+      <p className="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4 mt-2">
         {t("hero.location")} ·{" "}
         <a
           href="mailto:chiarolanzaraffaele@gmail.com"

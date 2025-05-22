@@ -39,10 +39,10 @@ const Index: React.FC = () => {
       id: "languages",
       title: t("languages.title"),
     },
-    {
-      id: "contact",
-      title: t("contact.title"),
-    },
+    // {
+    //   id: "contact",
+    //   title: t("contact.title"),
+    // },
   ];
 
   return (

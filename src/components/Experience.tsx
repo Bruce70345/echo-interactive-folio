@@ -3,7 +3,8 @@ import { useLanguage } from "@/context/LanguageContext";
 import { experiences } from "@/data/profile";
 import { CalendarDays } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import anime from "@/lib/anime";
+// import anime from "@/lib/anime";
+import { animate, utils, stagger } from "animejs";
 import {
   Collapsible,
   CollapsibleContent,
@@ -29,14 +30,18 @@ const Experience: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          anime({
-            targets: ".timeline-item",
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: anime.stagger(200),
-            easing: "easeOutExpo",
-            duration: 800,
-          });
+          animate(
+            {
+              targets: ".timeline-item",
+            },
+            {
+              opacity: [0, 1],
+              translateY: [20, 0],
+              delay: stagger(200),
+              easing: "easeOutExpo",
+              duration: 800,
+            }
+          );
           observer.unobserve(entries[0].target);
         }
       },

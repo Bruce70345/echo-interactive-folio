@@ -66,7 +66,7 @@ const NavBar: React.FC<NavBarProps> = ({ sections }) => {
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="text-xl md:text-2xl font-bold dark:text-white">
-          Raffaele Chiarolanza
+           AI Specialist
         </div>
 
         <div className="flex items-center space-x-1 md:space-x-4">

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { education } from "@/data/profile";
-import anime from "@/lib/anime";
+// import anime from "@/lib/anime";
+import { animate, utils, stagger } from "animejs";
 import {
   Card,
   CardContent,
@@ -21,14 +22,18 @@ const Education: React.FC = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          anime({
-            targets: ".education-card",
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: anime.stagger(200),
-            easing: "easeOutExpo",
-            duration: 800,
-          });
+          animate(
+            {
+              targets: ".education-card",
+            },
+            {
+              opacity: [0, 1],
+              translateY: [20, 0],
+              delay: stagger(200),
+              easing: "easeOutExpo",
+              duration: 800,
+            }
+          );
           observer.unobserve(entries[0].target);
         }
       },
