@@ -1,80 +1,52 @@
 
 export type Language = 'en' | 'zh';
 
+export interface LanguageString {
+  [key: string]: string;
+}
+
+export interface LanguageText {
+  en: string;
+  zh: string;
+}
+
 export interface Project {
   id: number;
   name: string;
-  description: {
-    en: string;
-    zh: string;
-  };
+  description: LanguageText;
   technologies: string[];
-  category: 'AI' | 'Web' | 'Robotics' | 'All';
+  category: 'AI' | 'Web' | 'Robotics';
   image: string;
   github: string;
   demo?: string;
-  lessons?: {
-    en: string;
-    zh: string;
-  };
+  lessons?: LanguageText;
 }
 
 export interface Skill {
   name: string;
-  category: 'AI/Machine Learning' | 'Robotics & Vision' | 'Programming' | 'Web & API' | 'Database' | 'Testing & Version Control';
-  level: number; // 1-5
-  icon?: string;
+  category: string;
+  level: number;
 }
 
 export interface Experience {
-  company: {
-    en: string;
-    zh: string;
-  };
-  period: {
-    en: string;
-    zh: string;
-  };
-  role: {
-    en: string;
-    zh: string;
-  };
-  description: {
-    en: string;
-    zh: string;
-  };
+  company: LanguageText;
+  period: LanguageText;
+  role: LanguageText;
+  description: LanguageText;
   technologies: string[];
 }
 
 export interface Education {
-  school: {
-    en: string;
-    zh: string;
-  };
-  degree: {
-    en: string;
-    zh: string;
-  };
-  period: {
-    en: string;
-    zh: string;
-  };
+  school: LanguageText;
+  degree: LanguageText;
+  period: LanguageText;
   gpa: string;
-  thesis?: {
-    en: string;
-    zh: string;
-  };
+  thesis?: LanguageText;
 }
 
-export interface Language {
-  name: {
-    en: string;
-    zh: string;
-  };
-  level: {
-    en: string;
-    zh: string;
-  };
+export interface LanguageItem {
+  name: LanguageText;
+  level: LanguageText;
   code: string;
   flag: string;
 }

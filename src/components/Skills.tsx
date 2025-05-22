@@ -1,71 +1,39 @@
-
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { skills } from '@/data/profile';
-import { Code, Globe, Database, Robot, Ai, GitBranch } from 'lucide-react';
-import anime from 'animejs';
-import { cn } from '@/lib/utils';
-
-// Group skills by category
-const groupedSkills = skills.reduce((acc, skill) => {
-  if (!acc[skill.category]) {
-    acc[skill.category] = [];
-  }
-  acc[skill.category].push(skill);
-  return acc;
-}, {} as Record<string, typeof skills>);
-
-const getCategoryIcon = (category: string) => {
-  switch (category) {
-    case 'Programming':
-      return <Code className="h-6 w-6" />;
-    case 'Web & API':
-      return <Globe className="h-6 w-6" />;
-    case 'Database':
-      return <Database className="h-6 w-6" />;
-    case 'Robotics & Vision':
-      return <Robot className="h-6 w-6" />;
-    case 'AI/Machine Learning':
-      return <Ai className="h-6 w-6" />;
-    case 'Testing & Version Control':
-      return <GitBranch className="h-6 w-6" />;
-    default:
-      return <Code className="h-6 w-6" />;
-  }
-};
-
-const getCategoryTitle = (category: string, language: 'en' | 'zh') => {
-  const translations: Record<string, { en: string, zh: string }> = {
-    'Programming': { en: 'Programming', zh: '程式設計' },
-    'Web & API': { en: 'Web & API', zh: '網頁和API' },
-    'Database': { en: 'Database', zh: '資料庫' },
-    'Robotics & Vision': { en: 'Robotics & Vision', zh: '機器人與視覺' },
-    'AI/Machine Learning': { en: 'AI/Machine Learning', zh: '人工智能/機器學習' },
-    'Testing & Version Control': { en: 'Testing & Version Control', zh: '測試與版本控制' }
-  };
-  
-  return translations[category]?.[language] || category;
-};
+import { Code, Database, Globe, CircleCheck, Bot } from 'lucide-react';
+import * as anime from 'animejs';
+import { Badge } from '@/components/ui/badge';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const Skills: React.FC = () => {
   const { language } = useLanguage();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [category, setCategory] = useState('All');
+  const [filteredSkills, setFilteredSkills] = useState(skills);
+  
+  useEffect(() => {
+    if (category === 'All') {
+      setFilteredSkills(skills);
+    } else {
+      setFilteredSkills(skills.filter(skill => skill.category === category));
+    }
+  }, [category]);
   
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          anime({
-            targets: '.skill-card',
-            opacity: [0, 1],
-            translateY: [20, 0],
-            delay: anime.stagger(100),
-            easing: 'easeOutExpo',
-            duration: 800
-          });
-          observer.unobserve(entry.target);
-        }
-      });
+      if (entries[0].isIntersecting) {
+        anime({
+          targets: '.skill-card',
+          opacity: [0, 1],
+          translateY: [20, 0],
+          delay: anime.stagger(100),
+          easing: 'easeOutExpo',
+          duration: 800
+        });
+        observer.unobserve(entries[0].target);
+      }
     }, { threshold: 0.1 });
     
     if (sectionRef.current) {
@@ -77,56 +45,77 @@ const Skills: React.FC = () => {
         observer.unobserve(sectionRef.current);
       }
     };
-  }, []);
+  }, [filteredSkills]);
+  
+  const getIcon = (category: string) => {
+    switch (category) {
+      case 'Programming':
+        return <Code className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
+      case 'AI/Machine Learning':
+        return <Bot className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
+      case 'Web & API':
+        return <Globe className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
+      case 'Database':
+        return <Database className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
+      case 'Testing & Version Control':
+        return <CircleCheck className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
+      case 'Robotics & Vision':
+        return <Bot className="h-5 w-5 mr-2 text-gray-500 dark:text-gray-400" />;
+      default:
+        return null;
+    }
+  };
+  
+  const categories = ['All', 'Programming', 'AI/Machine Learning', 'Web & API', 'Database', 'Testing & Version Control', 'Robotics & Vision'];
   
   return (
     <section id="skills" ref={sectionRef} className="py-20 px-6 md:px-12 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
+      <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
         {language === 'en' ? 'Skills' : '技能'}
       </h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {Object.entries(groupedSkills).map(([category, categorySkills]) => (
-          <div 
-            key={category}
-            className="skill-card bg-white dark:bg-[#112240] rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 opacity-0 transform"
-          >
-            <div className="flex items-center mb-4 text-[#64ffda]">
-              {getCategoryIcon(category)}
-              <h3 className="ml-2 text-xl font-semibold text-gray-800 dark:text-white">
-                {getCategoryTitle(category, language)}
-              </h3>
-            </div>
-            
-            <div className="space-y-4">
-              {categorySkills.map((skill) => (
-                <div key={skill.name} className="group">
-                  <div className="flex justify-between mb-1">
-                    <span className="text-gray-700 dark:text-gray-300 group-hover:text-[#64ffda] dark:group-hover:text-[#64ffda] transition-colors">
+      <Tabs defaultValue="All" className="mb-8">
+        <TabsList className="mb-8">
+          {categories.map(cat => (
+            <TabsTrigger 
+              key={cat}
+              value={cat}
+              onClick={() => setCategory(cat)}
+            >
+              {language === 'en' ? cat : cat}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+        
+        {categories.map(cat => (
+          <TabsContent key={cat} value={cat} className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredSkills.map((skill) => (
+                <Card 
+                  key={skill.name}
+                  className="skill-card opacity-0 hover:shadow-lg transition-all duration-300 border-[1px] border-gray-200 dark:border-gray-800"
+                >
+                  <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
+                    <CardTitle className="text-sm font-medium flex items-center">
+                      {getIcon(skill.category)}
                       {skill.name}
-                    </span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {skill.level}/5
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                    <div 
-                      className={cn(
-                        "h-2 rounded-full transition-all duration-500 group-hover:bg-[#64ffda]",
-                        skill.level === 5 ? "bg-green-500 dark:bg-green-400" :
-                        skill.level === 4 ? "bg-blue-500 dark:bg-blue-400" :
-                        skill.level === 3 ? "bg-yellow-500 dark:bg-yellow-400" :
-                        "bg-orange-500 dark:bg-orange-400"
-                      )}
-                      style={{ width: `${(skill.level / 5) * 100}%` }}
-                    ></div>
-                  </div>
-                </div>
+                    </CardTitle>
+                    <div className="text-gray-500 dark:text-gray-400">
+                      {skill.level}
+                      <Badge variant="secondary" className="ml-2">{language === 'en' ? 'Years' : '年'}</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">{skill.category}</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
               ))}
             </div>
-          </div>
+          </TabsContent>
         ))}
-      </div>
+      </Tabs>
     </section>
   );
 };

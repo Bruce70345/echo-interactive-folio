@@ -1,8 +1,7 @@
-
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { languages } from '@/data/profile';
-import anime from 'animejs';
+import * as anime from 'animejs';
 
 const Languages: React.FC = () => {
   const { language } = useLanguage();

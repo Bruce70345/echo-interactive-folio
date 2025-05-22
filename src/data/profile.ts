@@ -1,5 +1,4 @@
-
-import { Project, Skill, Experience, Education, Language as LanguageType } from '../types';
+import { Project, Skill, Experience, Education, LanguageItem } from '../types';
 
 export const projects: Project[] = [
   {
@@ -133,7 +132,7 @@ export const education: Education[] = [
   }
 ];
 
-export const languages: LanguageType[] = [
+export const languages: LanguageItem[] = [
   {
     name: { en: "Italian", zh: "義大利文" },
     level: { en: "Native", zh: "母語" },

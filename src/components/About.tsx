@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 import { summary } from '@/data/profile';
-import anime from 'animejs';
+import * as anime from 'animejs';
 import { cn } from '@/lib/utils';
 
 const About: React.FC = () => {
