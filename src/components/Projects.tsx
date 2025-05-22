@@ -21,9 +21,11 @@ import {
 } from "@/components/ui/hover-card";
 import { Project } from "@/types";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 const Projects: React.FC = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [category, setCategory] = useState<"All" | "AI" | "Web" | "Robotics">(
     "All"
@@ -70,10 +72,10 @@ const Projects: React.FC = () => {
   }, [filteredProjects]);
 
   const categories = [
-    { id: "All", label: { en: "All", zh: "全部" } },
-    { id: "AI", label: { en: "AI", zh: "人工智能" } },
-    { id: "Web", label: { en: "Web", zh: "網頁" } },
-    { id: "Robotics", label: { en: "Robotics", zh: "機器人" } },
+    { id: "All", label: t("projects.categories.all") },
+    { id: "AI", label: t("projects.categories.ai") },
+    { id: "Web", label: t("projects.categories.web") },
+    { id: "Robotics", label: t("projects.categories.robotics") },
   ];
 
   return (
@@ -83,7 +85,7 @@ const Projects: React.FC = () => {
       className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
     >
       <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-        {language === "en" ? "Projects" : "專案"}
+        {t("projects.title")}
       </h2>
 
       <Tabs defaultValue="All" className="mb-8">
@@ -94,7 +96,7 @@ const Projects: React.FC = () => {
               value={cat.id}
               onClick={() => setCategory(cat.id as any)}
             >
-              {cat.label[language]}
+              {cat.label}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -146,11 +148,7 @@ const Projects: React.FC = () => {
                         <HoverCardTrigger asChild>
                           <div className="flex items-center text-sm text-[#64ffda] cursor-pointer">
                             <FileText className="h-4 w-4 mr-1" />
-                            <span>
-                              {language === "en"
-                                ? "Lessons learned"
-                                : "學習心得"}
-                            </span>
+                            <span>{t("projects.lessonsLearned")}</span>
                           </div>
                         </HoverCardTrigger>
                         <HoverCardContent className="w-80">
@@ -182,7 +180,7 @@ const Projects: React.FC = () => {
                         >
                           <ExternalLink className="h-4 w-4 mr-1 group-hover/button:text-[#64ffda] transition-colors" />
                           <span className="group-hover/button:text-[#64ffda] transition-colors">
-                            Demo
+                            {t("projects.demo")}
                           </span>
                         </a>
                       </Button>

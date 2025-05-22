@@ -4,9 +4,11 @@ import { useLanguage } from "@/context/LanguageContext";
 import { summary } from "@/data/profile";
 import anime from "@/lib/anime";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 const About: React.FC = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const [expanded, setExpanded] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef);
@@ -31,7 +33,7 @@ const About: React.FC = () => {
       className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
     >
       <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-        {language === "en" ? "About Me" : "關於我"}
+        {t("about.title")}
       </h2>
 
       <div className="about-content opacity-0 grid md:grid-cols-4 gap-8">
@@ -55,7 +57,7 @@ const About: React.FC = () => {
             onClick={() => setExpanded(!expanded)}
             className="mt-4 flex items-center text-[#64ffda] hover:text-[#64ffda]/80 transition-colors"
           >
-            {language === "en" ? "Read more" : "閱讀更多"}
+            {t("about.readMore")}
             <ChevronDown
               className={cn(
                 "ml-1 h-5 w-5 transition-transform duration-300",
@@ -68,7 +70,8 @@ const About: React.FC = () => {
         <div className="md:col-span-1">
           <div className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
             {/* Placeholder for avatar - replace with actual image */}
-            <span className="text-4xl">RC</span>
+            {/* <span className="text-4xl">RC</span> */}
+            <img src="src/data/Square-FakeAvatar.png" alt="Avatar" />
           </div>
         </div>
       </div>

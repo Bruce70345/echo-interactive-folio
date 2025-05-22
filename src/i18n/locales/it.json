@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "Ingegnere Informatico",
+    "location": "Taipei, Taiwan",
+    "tagline": "Appassionato di AI e robotica con passione per il codice pulito.",
+    "buttons": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "skills": {
+    "title": "Competenze",
+    "years": "Anni"
+  },
+  "education": {
+    "title": "Istruzione",
+    "thesis": "Tesi:"
+  },
+  "experience": {
+    "title": "Esperienza",
+    "showMore": "Mostra di più",
+    "showLess": "Mostra meno"
+  },
+  "projects": {
+    "title": "Progetti",
+    "categories": {
+      "all": "Tutti",
+      "ai": "AI",
+      "web": "Web",
+      "robotics": "Robotica"
+    },
+    "lessonsLearned": "Lezioni apprese",
+    "demo": "Demo"
+  },
+  "languages": {
+    "title": "Lingue",
+    "level": {
+      "native": "Madrelingua",
+      "fluent": "Fluente",
+      "advanced": "Avanzato",
+      "intermediate": "Intermedio",
+      "beginner": "Principiante"
+    }
+  },
+  "about": {
+    "title": "Su di Me",
+    "readMore": "Leggi di più"
+  },
+  "contact": {
+    "title": "Contatto"
+  },
+  "footer": {
+    "allRightsReserved": "Tutti i diritti riservati"
+  },
+  "theme": {
+    "switchToDark": "Passa alla modalità scura",
+    "switchToLight": "Passa alla modalità chiara"
+  },
+  "notFound": {
+    "message": "Oops! Pagina non trovata",
+    "returnHome": "Torna alla Home"
+  }
+} 

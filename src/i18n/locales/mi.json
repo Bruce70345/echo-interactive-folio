@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "Kaihangarau Pūmanawa",
+    "location": "Taipei, Taiwan",
+    "tagline": "He kaingākau ki te AI me te Robotics me te kaingākau mō te waehere ma.",
+    "buttons": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "skills": {
+    "title": "Pūkenga",
+    "years": "Tau"
+  },
+  "education": {
+    "title": "Mātauranga",
+    "thesis": "Tuhinga:"
+  },
+  "experience": {
+    "title": "Wheako",
+    "showMore": "Whakaatu atu anō",
+    "showLess": "Whakaatu iti iho"
+  },
+  "projects": {
+    "title": "Kaupapa",
+    "categories": {
+      "all": "Katoa",
+      "ai": "AI",
+      "web": "Ipurangi",
+      "robotics": "Robotics"
+    },
+    "lessonsLearned": "Ngā akoranga i ako",
+    "demo": "Whakaaturanga"
+  },
+  "languages": {
+    "title": "Ngā Reo",
+    "level": {
+      "native": "Reo Māori",
+      "fluent": "Matatau",
+      "advanced": "Tōmua",
+      "intermediate": "Takawaenga",
+      "beginner": "Tīmatanga"
+    }
+  },
+  "about": {
+    "title": "Mō Ahau",
+    "readMore": "Pānuitia anō"
+  },
+  "contact": {
+    "title": "Whakapā"
+  },
+  "footer": {
+    "allRightsReserved": "Kua rāhuitia ngā mana katoa"
+  },
+  "theme": {
+    "switchToDark": "Huri ki te aratau pōuri",
+    "switchToLight": "Huri ki te aratau mārama"
+  },
+  "notFound": {
+    "message": "Auē! Kāore i kitea te whārangi",
+    "returnHome": "Hoki ki te Kāinga"
+  }
+} 

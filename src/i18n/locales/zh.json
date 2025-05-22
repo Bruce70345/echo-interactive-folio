@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "軟體工程師",
+    "location": "台北，台灣",
+    "tagline": "熱衷於人工智能和機器人技術，追求乾淨的代碼。",
+    "buttons": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "skills": {
+    "title": "技能",
+    "years": "年"
+  },
+  "education": {
+    "title": "學歷",
+    "thesis": "論文："
+  },
+  "experience": {
+    "title": "工作經歷",
+    "showMore": "顯示更多",
+    "showLess": "顯示更少"
+  },
+  "projects": {
+    "title": "專案",
+    "categories": {
+      "all": "全部",
+      "ai": "人工智能",
+      "web": "網頁",
+      "robotics": "機器人"
+    },
+    "lessonsLearned": "學習心得",
+    "demo": "演示"
+  },
+  "languages": {
+    "title": "語言能力",
+    "level": {
+      "native": "母語",
+      "fluent": "流利",
+      "advanced": "高級",
+      "intermediate": "中級",
+      "beginner": "初級"
+    }
+  },
+  "about": {
+    "title": "關於我",
+    "readMore": "閱讀更多"
+  },
+  "contact": {
+    "title": "聯絡我"
+  },
+  "footer": {
+    "allRightsReserved": "版權所有"
+  },
+  "theme": {
+    "switchToDark": "切換至暗色模式",
+    "switchToLight": "切換至亮色模式"
+  },
+  "notFound": {
+    "message": "糟糕！找不到頁面",
+    "returnHome": "返回首頁"
+  }
+} 

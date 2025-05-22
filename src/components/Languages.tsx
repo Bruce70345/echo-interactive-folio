@@ -2,9 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { languages } from "@/data/profile";
 import anime from "@/lib/anime";
+import { useTranslation } from "react-i18next";
 
 const Languages: React.FC = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -40,18 +42,28 @@ const Languages: React.FC = () => {
     switch (level.toLowerCase()) {
       case "native":
       case "母語":
+      case "madrelingua":
+      case "reo taketake":
         return "100%";
       case "fluent":
       case "流利":
+      case "fluente":
+      case "matatau":
         return "90%";
       case "advanced":
       case "高級":
+      case "avanzato":
+      case "tōmua":
         return "80%";
       case "intermediate":
       case "中級":
+      case "intermedio":
+      case "takawaenga":
         return "60%";
       case "beginner":
       case "初級":
+      case "principiante":
+      case "tīmatanga":
         return "30%";
       default:
         return "50%";
@@ -65,7 +77,7 @@ const Languages: React.FC = () => {
       className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
     >
       <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
-        {language === "en" ? "Languages" : "語言能力"}
+        {t("languages.title")}
       </h2>
 
       <div className="max-w-2xl mx-auto space-y-6">

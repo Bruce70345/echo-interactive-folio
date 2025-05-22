@@ -10,9 +10,11 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 const Experience: React.FC = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [openItems, setOpenItems] = useState<Record<number, boolean>>({});
 
@@ -59,7 +61,7 @@ const Experience: React.FC = () => {
       className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
     >
       <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
-        {language === "en" ? "Experience" : "工作經歷"}
+        {t("experience.title")}
       </h2>
 
       <div className="relative">
@@ -127,12 +129,8 @@ const Experience: React.FC = () => {
 
                     <CollapsibleTrigger className="w-full mt-3 text-sm text-[#64ffda] hover:text-[#64ffda]/80">
                       {openItems[index]
-                        ? language === "en"
-                          ? "Show less"
-                          : "顯示更少"
-                        : language === "en"
-                        ? "Show more"
-                        : "顯示更多"}
+                        ? t("experience.showLess")
+                        : t("experience.showMore")}
                     </CollapsibleTrigger>
                   </Collapsible>
                 </div>

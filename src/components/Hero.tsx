@@ -3,20 +3,36 @@ import { Linkedin, Github } from "lucide-react";
 import anime from "@/lib/anime";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 const Hero: React.FC = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<boolean>(false);
 
-  useEffect(() => {
+  // 分離名字和姓氏為兩個變數
+  const firstName = "Raffaele";
+  const lastName = "Chiarolanza";
+
+  const heroAnimation = () => {
     if (containerRef.current) {
+      // 重置任何現有的動畫狀態
+      anime.remove([
+        ".hero-firstname .letter",
+        ".hero-lastname .letter",
+        ".hero-subtitle",
+        ".hero-tagline",
+        ".hero-buttons",
+      ]);
+
       const timeline = anime.timeline({
         easing: "easeOutExpo",
       });
 
       timeline
         .add({
-          targets: ".hero-title .letter",
+          targets: [".hero-firstname .letter", ".hero-lastname .letter"],
           opacity: [0, 1],
           translateY: [20, 0],
           translateZ: 0,
@@ -44,13 +60,39 @@ const Hero: React.FC = () => {
           duration: 800,
           offset: "-=400",
         });
+
+      animationRef.current = true;
     }
+  };
+
+  // 初始化動畫
+  useEffect(() => {
+    heroAnimation();
+
+    const intervalId = setInterval(() => {
+      heroAnimation();
+    }, 10000);
+
+    return () => clearInterval(intervalId);
   }, []);
 
-  // Split the name into individual letters for animation
-  const nameLetters = "Raffaele Chiarolanza".split("").map((letter, index) => (
-    <span key={index} className="letter inline-block">
-      {letter === " " ? "\u00A0" : letter}
+  // 語言變更時重新執行動畫
+  useEffect(() => {
+    if (animationRef.current) {
+      heroAnimation();
+    }
+  }, [language]);
+
+  // 將名字和姓氏分別拆分為單個字母，以便進行動畫
+  const firstNameLetters = firstName.split("").map((letter, index) => (
+    <span key={`first-${index}`} className="letter inline-block">
+      {letter}
+    </span>
+  ));
+
+  const lastNameLetters = lastName.split("").map((letter, index) => (
+    <span key={`last-${index}`} className="letter inline-block">
+      {letter}
     </span>
   ));
 
@@ -60,16 +102,16 @@ const Hero: React.FC = () => {
       ref={containerRef}
       className="min-h-screen flex flex-col justify-center items-start px-6 md:px-12 pt-16 max-w-7xl mx-auto"
     >
-      <h1 className="hero-title text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-        {nameLetters}
-        <span className="text-[#64ffda] dark:text-[#64ffda]">
-          {" "}
-          — Software Engineer
+      <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 flex flex-wrap">
+        <span className="hero-firstname mr-4">{firstNameLetters}</span>
+        <span className="hero-lastname">{lastNameLetters}</span>
+        <span className="text-[#64ffda] dark:text-[#64ffda] w-full mt-2">
+          — {t("hero.title")}
         </span>
       </h1>
 
       <p className="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4">
-        {language === "en" ? "Taipei, Taiwan · " : "台北，台灣 · "}
+        {t("hero.location")} ·{" "}
         <a
           href="mailto:chiarolanzaraffaele@gmail.com"
           className="hover:text-[#64ffda] dark:hover:text-[#64ffda] transition-colors"
@@ -79,9 +121,7 @@ const Hero: React.FC = () => {
       </p>
 
       <p className="hero-tagline text-lg md:text-xl text-gray-700 dark:text-gray-200 mb-8 max-w-2xl">
-        {language === "en"
-          ? "AI and Robotics Enthusiast with a Passion for Clean Code."
-          : "熱衷於人工智能和機器人技術，追求乾淨的代碼。"}
+        {t("hero.tagline")}
       </p>
 
       <div className="hero-buttons flex space-x-4">
@@ -96,7 +136,7 @@ const Hero: React.FC = () => {
             rel="noopener noreferrer"
           >
             <Linkedin className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-            LinkedIn
+            {t("hero.buttons.linkedin")}
           </a>
         </Button>
 
@@ -111,7 +151,7 @@ const Hero: React.FC = () => {
             rel="noopener noreferrer"
           >
             <Github className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-            GitHub
+            {t("hero.buttons.github")}
           </a>
         </Button>
       </div>

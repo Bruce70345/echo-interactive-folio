@@ -10,9 +10,11 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { CalendarDays } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Education: React.FC = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const Education: React.FC = () => {
       className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
     >
       <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
-        {language === "en" ? "Education" : "學歷"}
+        {t("education.title")}
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -83,7 +85,7 @@ const Education: React.FC = () => {
               {edu.thesis && (
                 <div>
                   <h5 className="text-sm font-medium text-gray-700 dark:text-gray-200">
-                    {language === "en" ? "Thesis:" : "論文："}
+                    {t("education.thesis")}
                   </h5>
                   <p className="text-gray-600 dark:text-gray-300 italic">
                     "{edu.thesis[language]}"

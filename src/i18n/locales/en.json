@@ -1,0 +1,63 @@
+{
+  "hero": {
+    "title": "Software Engineer",
+    "location": "Taipei, Taiwan",
+    "tagline": "AI and Robotics Enthusiast with a Passion for Clean Code.",
+    "buttons": {
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "years": "Years"
+  },
+  "education": {
+    "title": "Education",
+    "thesis": "Thesis:"
+  },
+  "experience": {
+    "title": "Experience",
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+  "projects": {
+    "title": "Projects",
+    "categories": {
+      "all": "All",
+      "ai": "AI",
+      "web": "Web",
+      "robotics": "Robotics"
+    },
+    "lessonsLearned": "Lessons learned",
+    "demo": "Demo"
+  },
+  "languages": {
+    "title": "Languages",
+    "level": {
+      "native": "Native",
+      "fluent": "Fluent",
+      "advanced": "Advanced",
+      "intermediate": "Intermediate",
+      "beginner": "Beginner"
+    }
+  },
+  "about": {
+    "title": "About Me",
+    "readMore": "Read more"
+  },
+  "contact": {
+    "title": "Contact"
+  },
+  "footer": {
+    "allRightsReserved": "All rights reserved"
+  },
+  "theme": {
+    "switchToDark": "Switch to dark mode",
+    "switchToLight": "Switch to light mode"
+  },
+  "notFound": {
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  }
+} 

@@ -6,9 +6,11 @@ import anime from "@/lib/anime";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslation } from "react-i18next";
 
 const Skills: React.FC = () => {
   const { language } = useLanguage();
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
   const [category, setCategory] = useState("All");
   const [filteredSkills, setFilteredSkills] = useState(skills);
@@ -91,6 +93,21 @@ const Skills: React.FC = () => {
     "Robotics & Vision",
   ];
 
+  const getCategoryTranslation = (category: string) => {
+    switch (category) {
+      case "All":
+        return t("projects.categories.all");
+      case "AI/Machine Learning":
+        return t("projects.categories.ai");
+      case "Web & API":
+        return t("projects.categories.web");
+      case "Robotics & Vision":
+        return t("projects.categories.robotics");
+      default:
+        return category;
+    }
+  };
+
   return (
     <section
       id="skills"
@@ -98,14 +115,14 @@ const Skills: React.FC = () => {
       className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
     >
       <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
-        {language === "en" ? "Skills" : "技能"}
+        {t("skills.title")}
       </h2>
 
       <Tabs defaultValue="All" className="mb-8">
         <TabsList className="mb-8">
           {categories.map((cat) => (
             <TabsTrigger key={cat} value={cat} onClick={() => setCategory(cat)}>
-              {language === "en" ? cat : cat}
+              {getCategoryTranslation(cat)}
             </TabsTrigger>
           ))}
         </TabsList>
@@ -126,7 +143,7 @@ const Skills: React.FC = () => {
                     <div className="text-gray-500 dark:text-gray-400">
                       {skill.level}
                       <Badge variant="secondary" className="ml-2">
-                        {language === "en" ? "Years" : "年"}
+                        {t("skills.years")}
                       </Badge>
                     </div>
                   </CardHeader>

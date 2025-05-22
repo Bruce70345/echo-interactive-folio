@@ -1,5 +1,4 @@
-
-export type Language = 'en' | 'zh';
+export type Language = "en" | "zh" | "it" | "mi";
 
 export interface LanguageString {
   [key: string]: string;
@@ -8,6 +7,8 @@ export interface LanguageString {
 export interface LanguageText {
   en: string;
   zh: string;
+  it: string;
+  mi: string;
 }
 
 export interface Project {
@@ -15,7 +16,7 @@ export interface Project {
   name: string;
   description: LanguageText;
   technologies: string[];
-  category: 'AI' | 'Web' | 'Robotics';
+  category: "AI" | "Web" | "Robotics";
   image: string;
   github: string;
   demo?: string;
