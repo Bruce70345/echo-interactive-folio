@@ -16,6 +16,10 @@ const Index: React.FC = () => {
 
   const sections = [
     {
+      id: "hero",
+      title: t("hero.title"),
+    },
+    {
       id: "about",
       title: t("about.title"),
     },

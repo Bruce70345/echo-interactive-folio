@@ -65,12 +65,14 @@ const NavBar: React.FC<NavBarProps> = ({ sections }) => {
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-xl md:text-2xl font-bold dark:text-white">
-           AI Specialist
+        <div className="text-xl md:text-2xl font-bold dark:text-white noselect"
+            onClick={() => scrollToSection("hero")}
+          >
+            CODE x LIFE
         </div>
 
         <div className="flex items-center space-x-1 md:space-x-4">
-          <div className="hidden md:flex space-x-1 md:space-x-4">
+          <div className="hidden lg:flex space-x-1 lg:space-x-4">
             {sections.map((section) => (
               <button
                 key={section.id}

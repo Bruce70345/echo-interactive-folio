@@ -12,19 +12,50 @@ import {
 } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
+import { highlightKeywords } from "@/lib/highlight";
 
 const Experience: React.FC = () => {
   const { language } = useLanguage();
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [openItems, setOpenItems] = useState<Record<number, boolean>>({});
 
   const toggleItem = (index: number) => {
+    const contentElement = contentRefs.current[index];
+    const isOpen = openItems[index];
+
+    if (contentElement) {
+      const height = contentElement.scrollHeight;
+
+      animate(contentElement, {
+        height: isOpen ? [height, 0] : [0, height],
+        opacity: isOpen ? [1, 0] : [0, 1],
+        duration: 400,
+        ease: "inOutSine",
+        complete: () => {
+          if (!isOpen) {
+            contentElement.style.height = "auto";
+          }
+        },
+      });
+    }
+
     setOpenItems((prev) => ({
       ...prev,
       [index]: !prev[index],
     }));
   };
+
+  useEffect(() => {
+    // 初始化所有內容區域的高度為 0
+    contentRefs.current.forEach((ref) => {
+      if (ref) {
+        ref.style.height = "0px";
+        ref.style.overflow = "hidden";
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -58,7 +89,7 @@ const Experience: React.FC = () => {
     <section
       id="experience"
       ref={sectionRef}
-      className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+      className="py-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen"
     >
       <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
         {t("experience.title")}
@@ -99,7 +130,7 @@ const Experience: React.FC = () => {
                     onOpenChange={() => toggleItem(index)}
                   >
                     <div className="flex flex-col mb-4">
-                      <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
+                      <h3 className="text-xl font-semibold text-gray-800 dark:text-white text-start">
                         {exp.company[language]}
                       </h3>
 
@@ -108,24 +139,35 @@ const Experience: React.FC = () => {
                         <span>{exp.period[language]}</span>
                       </div>
 
-                      <p className="text-[#64ffda] mt-2">
+                      <p className="text-[#64ffda] mt-2 text-start">
                         {exp.role[language]}
                       </p>
                     </div>
 
-                    <CollapsibleContent className="space-y-4">
-                      <p className="text-gray-700 dark:text-gray-200">
-                        {exp.description[language]}
-                      </p>
+                    <div
+                      ref={(el) => (contentRefs.current[index] = el)}
+                      className="overflow-hidden"
+                    >
+                      <div className="space-y-4">
+                        <div
+                          className="text-gray-700 dark:text-gray-200"
+                          dangerouslySetInnerHTML={{
+                            __html: highlightKeywords(
+                              exp.description[language],
+                              language
+                            ),
+                          }}
+                        ></div>
 
-                      <div className="flex flex-wrap gap-2">
-                        {exp.technologies.map((tech) => (
-                          <Badge key={tech} variant="secondary">
-                            {tech}
-                          </Badge>
-                        ))}
+                        <div className="flex flex-wrap gap-2">
+                          {exp.technologies.map((tech) => (
+                            <Badge key={tech} variant="secondary">
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
                       </div>
-                    </CollapsibleContent>
+                    </div>
 
                     <CollapsibleTrigger className="w-full mt-3 text-sm text-[#64ffda] hover:text-[#64ffda]/80">
                       {openItems[index]

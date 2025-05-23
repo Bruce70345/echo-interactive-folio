@@ -83,40 +83,53 @@ const About: React.FC = () => {
   };
 
   useEffect(() => {
+    const targetContent = document.querySelector(".about-content");
+    const shapeElements = document.querySelectorAll(".shape");
+  
     if (isInView) {
-      animate(".about-content", {
+      // 進入視窗，觸發動畫
+      animate(targetContent, {
         opacity: [0, 1],
         translateY: [20, 0],
-        ease: "outExpo",
+        easing: "outExpo",
         duration: 1000,
-        delay: 200,
       });
-
-      animate(".shape", {
+  
+      animate(shapeElements, {
         x: () => utils.random(-100, 100),
         y: () => utils.random(-100, 100),
         rotate: () => utils.random(-180, 180),
-        scale: () => utils.random(0.9, 1),
+        scale: () => utils.random(0.9, 1.05),
         duration: () => utils.random(500, 1000),
-        easing: "easeOutExpo",
+        ease: "outExpo",
+        // loop: true,
       });
+    } else {
+      // 離開視窗時停止動畫
+      if (targetContent) utils.remove(targetContent);
+      shapeElements.forEach((el) => utils.remove(el));
     }
   }, [isInView]);
+  
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      animate(".shape", {
-        x: () => utils.random(-50, 100),
-        y: () => utils.random(-50, 100),
-        rotate: () => utils.random(-180, 180),
-        scale: () => utils.random(0.9, 1),
-        duration: () => utils.random(500, 1000),
-        easing: "easeOutExpo",
-      });
-    }, 1000);
+    let intervalId: NodeJS.Timeout;
+
+    if (isInView) {
+      intervalId = setInterval(() => {
+        animate(".shape", {
+          x: () => utils.random(-100, 100),
+          y: () => utils.random(-100, 100),
+          rotate: () => utils.random(-180, 180),
+          scale: () => utils.random(0.9, 1.05),
+          duration: () => utils.random(500, 1000),
+          ease: "outExpo",
+        });
+      }, 1300);
+    }
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [isInView]);
 
   return (
     <section
@@ -165,25 +178,32 @@ const About: React.FC = () => {
         square // w-10 h-10 border-2 border-[#ffa828]
         */}
         <div
-          className={`mt-20 sm:mt-0 w-full md:col-span-4 lg:col-span-2 flex ${
+          className={` sm:mt-0 sm:col-span-4 md:col-span-2 flex ${
             expanded
-              ? "opacity-0 md:opacity-100 scale-95 md:scale-100 pointer-events-none md:pointer-events-auto"
-              : "opacity-100 scale-100"
+              ? "opacity-0 md:opacity-100 scale-95 md:scale-100 pointer-events-none md:pointer-events-auto justify-center"
+              : "opacity-100 scale-100 justify-center"
           }`}
         >
-          <div className="flex items-center justify-start sm:justify-center flex-wrap gap-2">
-            <div className="shape w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
-            <div className="shape w-10 h-10 rounded-full bg-[#64ffda]"></div>
-            <div className="shape w-10 h-10 border-2 border-[#64ffda]"></div>
-            <div className="shape w-10 h-10 bg-[#64ffda]"></div>
-            <div className="shape w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
-            <div className="shape w-10 h-10 rounded-full bg-[#64ffda]"></div>
-            <div className="shape w-10 h-10 border-2 border-[#ffda64]"></div>
-            <div className="shape w-10 h-10 bg-[#ffda64]"></div>
-            <div className="shape w-10 h-10 rounded-full border-2 border-[#ffda64]"></div>
-            <div className="shape w-10 h-10 rounded-full bg-[#ffda64]"></div>
-            <div className="shape w-10 h-10 border-2 border-[#ffda64]"></div>
-            <div className="shape w-10 h-10 bg-[#ffda64]"></div>
+          <div className="flex grid grid-cols-8 md:grid-cols-10 lg:grid-cols-12 items-center justify-start sm:justify-center flex-wrap gap-2 overflow-hidden">
+            <div className="shape col-span-1 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 bg-[#ffda64]"></div>
+            <div className="shape col-span-2 w-10 h-10 border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 rounded-full bg-[#ffda64]"></div>
+            <div className="shape col-span-2 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 bg-[#ffda64]"></div>
+            <div className="shape col-span-2 w-10 h-10 border-2 border-[#ffda64]"></div>
+            <div className="shape col-span-2 w-10 h-10 rounded-full bg-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 rounded-full bg-[#ffda64]"></div>
+            <div className="shape col-span-2 w-10 h-10 bg-[#ffda64]"></div>
+            <div className="shape col-span-2 w-10 h-10 border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-5 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-5 w-10 h-10 rounded-full border-2 border-[#ffda64]"></div>
+            <div className="shape hidden lg:block col-span-5 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape hidden lg:block col-span-5 w-10 h-10 rounded-full border-2 border-[#ffda64]"></div>
+            <div className="shape hidden lg:block col-span-3 w-10 h-10 bg-[#64ffda]"></div>
+            <div className="shape hidden lg:block col-span-3 w-10 h-10 border-2 border-[#ffda64]"></div>
+            <div className="shape hidden lg:block col-span-3 w-10 h-10 bg-[#64ffda]"></div>
+            <div className="shape hidden lg:block col-span-3 w-10 h-10 border-2 border-[#ffda64]"></div>
           </div>
         </div>
       </div>

@@ -1,7 +1,9 @@
 import React from "react";
 import { useLanguage } from "@/context/LanguageContext";
-import { Linkedin, Github } from "lucide-react";
+// import { Linkedin, Github } from "lucide-react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
+import { profileData } from "@/data/profileData";
 
 const Footer: React.FC = () => {
   const { language } = useLanguage();
@@ -20,22 +22,22 @@ const Footer: React.FC = () => {
 
         <div className="flex items-center space-x-6">
           <a
-            href="https://www.linkedin.com/in/raffaele-chiarolanza/"
+            href={profileData.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 dark:text-gray-300 hover:text-[#64ffda] dark:hover:text-[#64ffda] transition-colors"
             aria-label="LinkedIn"
           >
-            <Linkedin className="h-6 w-6" />
+            <FaLinkedin className="h-6 w-6" />
           </a>
           <a
-            href="https://github.com/raffaele-chiarolanza"
+            href={profileData.github}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-600 dark:text-gray-300 hover:text-[#64ffda] dark:hover:text-[#64ffda] transition-colors"
             aria-label="GitHub"
           >
-            <Github className="h-6 w-6" />
+            <FaGithub className="h-6 w-6" />
           </a>
         </div>
       </div>

@@ -29,7 +29,7 @@ const Education: React.FC = () => {
               opacity: [0, 1],
               translateY: [20, 0],
               delay: stagger(200),
-              easing: "outExpo",
+              ease: "outExpo",
               duration: 800,
             }
           );
@@ -54,7 +54,7 @@ const Education: React.FC = () => {
     <section
       id="education"
       ref={sectionRef}
-      className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+      className="py-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen"
     >
       <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white">
         {t("education.title")}

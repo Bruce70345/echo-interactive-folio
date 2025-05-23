@@ -34,7 +34,7 @@ const LanguageSwitcher: React.FC = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon" className="rounded-full">
           <Languages className="h-[1.2rem] w-[1.2rem]" />
-          <span className="sr-only">切換語言</span>
+          <span className="sr-only">Switch Language</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

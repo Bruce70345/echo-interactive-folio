@@ -86,40 +86,21 @@ const Skills: React.FC = () => {
       `.skill-card-${skillName.replace(/\s+/g, "-").toLowerCase()}`
     );
 
-    // if (cardElement) {
-    //   // 首先移除動畫類，以便能夠重新觸發
-    //   cardElement.classList.remove("card-shadow-animation");
-
-    //   // 強制重繪，以確保類的移除生效
-    //   void (cardElement as HTMLElement).offsetWidth;
-
-    //   // 添加動畫類，觸發陰影脈衝動畫
-    //   cardElement.classList.add("card-shadow-animation");
-    // }
-
-    // animate(cardElement, {
-    //   boxShadow: [
-    //     {
-    //       to: stagger([1, 0.25], {
-    //         modifier: (v) => `0 0 ${v * 30}px ${v * 20}px currentColor`,
-    //         from: "center",
-    //       }),
-    //     },
-    //     { to: 0 },
-    //   ],
-    //   delay: stagger(100, { from: "center" }),
-    //   loop: false,
-    // });
+    if (cardElement) {
+      animate(cardElement, {
+        scale: [1, 2, 1],
+        duration: 300,
+        easing: "easeInOutSine",
+      });
+    }
   };
 
   // 處理卡片長按開始事件
   const handleCardPressStart = (skillName: string) => {
-    // 清除先前的計時器
     if (pressTimer) {
       clearTimeout(pressTimer);
     }
 
-    // 設置新的計時器
     const timer = setTimeout(() => {
       setPressedCardId(skillName);
       const cardElement = document.querySelector(
@@ -127,27 +108,37 @@ const Skills: React.FC = () => {
       );
 
       if (cardElement) {
-        // 放大效果
         animate(cardElement, {
-          scale: 0.9,
-          duration: 300,
-          easing: "outQuad",
+          boxShadow: [
+            {
+              to: stagger([1, 0.25], {
+                modifier: (v) => `0 0 ${v * 30}px ${v * 20}px currentColor`,
+                from: "center",
+              }),
+            },
+            { to: 0 },
+          ],
+          // "0 0 0 rgba(100, 255, 218, 0)",
+          // "0 0 20px rgba(100, 255, 218, 0.5)",
+          // "0 0 30px rgba(100, 255, 218, 0.3)",
+          // "0 0 0 rgba(100, 255, 218, 0)",
+          duration: 1000,
+          loop: false,
+          ease: "easeInOutSine",
         });
       }
-    }, 300); // 300毫秒後觸發長按
+    }, 300);
 
     setPressTimer(timer);
   };
 
   // 處理卡片長按結束事件
   const handleCardPressEnd = (skillName: string) => {
-    // 清除計時器
     if (pressTimer) {
       clearTimeout(pressTimer);
       setPressTimer(null);
     }
 
-    // 如果卡片已被放大，還原其大小
     if (pressedCardId === skillName) {
       setPressedCardId(null);
       const cardElement = document.querySelector(
@@ -156,9 +147,18 @@ const Skills: React.FC = () => {
 
       if (cardElement) {
         animate(cardElement, {
-          scale: 1,
+          boxShadow: [
+            {
+              to: stagger([1, 0.25], {
+                modifier: (v) => `0 0 ${v * 30}px ${v * 20}px currentColor`,
+                from: "center",
+              }),
+            },
+            { to: 0 },
+          ],
+          // boxShadow: "0 0 0 rgba(100, 255, 218, 0)",
           duration: 300,
-          easing: "easeOutQuad",
+          ease: "inOutSine",
         });
       }
     }
@@ -257,7 +257,7 @@ const Skills: React.FC = () => {
     <section
       id="skills"
       ref={sectionRef}
-      className="py-16 px-6 md:px-12 max-w-7xl mx-auto h-screen flex flex-col"
+      className="py-16 px-6 md:px-12 max-w-7xl mx-auto h-screen flex flex-col min-h-screen"
     >
       <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
         {t("skills.title")}
@@ -301,7 +301,7 @@ const Skills: React.FC = () => {
                     onTouchEnd={() => handleCardPressEnd(skill.name)}
                   >
                     <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                      <CardTitle className="text-sm font-medium flex items-center">
+                      <CardTitle className="text-sm font-medium flex items-center text-[#64ffda]">
                         {getSkillIcon(skill.name)}
                         {skill.name}
                       </CardTitle>

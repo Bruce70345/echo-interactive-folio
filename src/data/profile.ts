@@ -1,4 +1,5 @@
 import { Project, Skill, Experience, Education, LanguageItem } from "../types";
+import { profileData } from "./profileData";
 
 export const projects: Project[] = [
   {
@@ -13,7 +14,7 @@ export const projects: Project[] = [
     technologies: ["Python", "TensorFlow", "Scikit-learn", "Wireshark"],
     category: "AI",
     image: "/placeholder.svg",
-    github: "https://github.com/yourname/malware-detection",
+    github: profileData.githubMalwareDetection,
     lessons: {
       en: "Developed expertise in building AI-driven security solutions, enhancing accuracy through real-time data analysis and feature engineering",
       zh: "在構建人工智能驅動的安全解決方案方面積累了專業知識，通過實時數據分析和特徵工程提高準確性",
@@ -33,7 +34,7 @@ export const projects: Project[] = [
     technologies: ["ROS", "OpenCV", "Python", "TurtleBot 3"],
     category: "Robotics",
     image: "/placeholder.svg",
-    github: "https://github.com/yourname/robotic-vision",
+    github: profileData.githubRoboticVision,
     lessons: {
       en: "Mastered computer vision techniques like obstacle detection and SLAM (Simultaneous Localization and Mapping), optimizing real-time robot navigation",
       zh: "掌握了計算機視覺技術，如障礙物檢測和 SLAM（同步定位與地圖構建），優化實時機器人導航",
@@ -53,7 +54,7 @@ export const projects: Project[] = [
     technologies: ["Spring Boot", "Java", "MySQL", "JUnit 5"],
     category: "Web",
     image: "/placeholder.svg",
-    github: "https://github.com/yourname/finance-tracker",
+    github: profileData.githubFinanceTracker,
     lessons: {
       en: "Gained experience in designing scalable RESTful APIs and implementing robust unit testing for reliable application performance",
       zh: "獲得了設計可擴展 RESTful API 和實施可靠單元測試以確保應用程序可靠性能的經驗",
@@ -78,7 +79,7 @@ export const projects: Project[] = [
     ],
     category: "AI",
     image: "/placeholder.svg",
-    github: "https://github.com/yourname/lego-ai",
+    github: profileData.githubLegoAI,
     lessons: {
       en: "Leveraged advanced machine learning models for creative digital transformation of physical objects",
       zh: "利用先進的機器學習模型對物理物體進行創造性數字轉換",

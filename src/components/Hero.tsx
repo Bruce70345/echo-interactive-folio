@@ -1,16 +1,19 @@
-import React, { useEffect, useRef } from "react";
-import { Linkedin, Github } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
 // import anime from "@/lib/anime";
 import { animate, utils, stagger, createTimeline } from "animejs";
 import { useLanguage } from "@/context/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import SpeechBubble from "@/components/ui/SpeechBubble";
+import { profileData } from "@/data/profileData";
 
 const Hero: React.FC = () => {
   const { language } = useLanguage();
   const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const animationRef = useRef<boolean>(false);
+  const [showGreeting, setShowGreeting] = useState(false);
 
   // 分離名字和姓氏為兩個變數
   const firstName = "Raffaele";
@@ -113,6 +116,10 @@ const Hero: React.FC = () => {
     </span>
   ));
 
+  const handleAvatarClick = () => {
+    setShowGreeting(true);
+  };
+
   return (
     <div
       id="hero"
@@ -126,11 +133,21 @@ const Hero: React.FC = () => {
           — {t("hero.title")}
         </span>
       </h1>
-      <div className="w-[50%] md:w-[25%] self-end">
-        <div className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center lg:absolute lg:top-[30%] lg:right-[20%] lg:w-[20%]">
-          {/* Placeholder for avatar - replace with actual image */}
-          {/* <span className="text-4xl">RC</span> */}
-          <img src="src/data/Square-FakeAvatar.png" alt="Avatar" />
+      <div className="flex flex-row w-full justify-end">
+        <div className="w-[50%] md:w-[25%] self-end">
+          <div className="relative lg:static">
+          <SpeechBubble
+            className="lg:hidden"
+            show={showGreeting}
+            onHide={() => setShowGreeting(false)}
+          />
+          <div
+            className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center lg:absolute lg:top-[30%] lg:right-[20%] lg:w-[20%]"
+            onClick={handleAvatarClick}
+          >
+            <img src="src/data/Square-FakeAvatar.png" alt="Avatar" />
+          </div>
+          </div>
         </div>
       </div>
       <p className="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-4 mt-2">
@@ -154,11 +171,11 @@ const Hero: React.FC = () => {
           asChild
         >
           <a
-            href="https://www.linkedin.com/in/raffaele-chiarolanza/"
+            href={profileData.linkedin}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Linkedin className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+            <FaLinkedin className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
             {t("hero.buttons.linkedin")}
           </a>
         </Button>
@@ -169,11 +186,11 @@ const Hero: React.FC = () => {
           asChild
         >
           <a
-            href="https://github.com/raffaele-chiarolanza"
+            href={profileData.github}
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Github className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+            <FaGithub className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
             {t("hero.buttons.github")}
           </a>
         </Button>

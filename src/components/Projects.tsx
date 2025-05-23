@@ -16,10 +16,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { Project } from "@/types";
 import { cn } from "@/lib/utils";
 import { useTranslation } from "react-i18next";
@@ -28,10 +28,48 @@ const Projects: React.FC = () => {
   const { language } = useLanguage();
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLDivElement>(null);
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [openItems, setOpenItems] = useState<Record<number, boolean>>({});
   const [category, setCategory] = useState<"All" | "AI" | "Web" | "Robotics">(
     "All"
   );
   const [filteredProjects, setFilteredProjects] = useState<Project[]>(projects);
+
+  const toggleItem = (index: number) => {
+    const contentElement = contentRefs.current[index];
+    const isOpen = openItems[index];
+
+    if (contentElement) {
+      const height = contentElement.scrollHeight;
+
+      animate(contentElement, {
+        height: isOpen ? [height, 0] : [0, height],
+        opacity: isOpen ? [1, 0] : [0, 1],
+        duration: 400,
+        ease: "inOutQuad",
+        complete: () => {
+          if (!isOpen) {
+            contentElement.style.height = "auto";
+          }
+        },
+      });
+    }
+
+    setOpenItems((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
+  useEffect(() => {
+    // 初始化所有內容區域的高度為 0
+    contentRefs.current.forEach((ref) => {
+      if (ref) {
+        ref.style.height = "0px";
+        ref.style.overflow = "hidden";
+      }
+    });
+  }, []);
 
   useEffect(() => {
     if (category === "All") {
@@ -49,7 +87,7 @@ const Projects: React.FC = () => {
         if (entries[0].isIntersecting) {
           animate(
             ".project-card",
-            
+
             {
               opacity: [0, 1],
               translateY: [20, 0],
@@ -86,7 +124,7 @@ const Projects: React.FC = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="py-20 px-6 md:px-12 max-w-7xl mx-auto"
+      className="py-20 px-6 md:px-12 max-w-7xl mx-auto min-h-screen"
     >
       <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
         {t("projects.title")}
@@ -108,13 +146,13 @@ const Projects: React.FC = () => {
         {categories.map((cat) => (
           <TabsContent key={cat.id} value={cat.id} className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project) => (
+              {filteredProjects.map((project, index) => (
                 <Card
-                  key={project.id}
+                  key={index}
                   className="project-card opacity-0 group hover:shadow-lg transition-all duration-300 border-[1px] border-gray-200 dark:border-gray-800"
                 >
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-xl font-semibold text-gray-800 dark:text-white group-hover:text-[#64ffda] transition-colors">
+                    <CardTitle className="text-xl font-semibold text-gray-800 dark:text-[#64ffda] text-[#64ffda] transition-colors">
                       {project.name}
                     </CardTitle>
                     <CardDescription>
@@ -147,30 +185,27 @@ const Projects: React.FC = () => {
                       ))}
                     </div>
 
-                    {project.lessons && (
-                      <HoverCard>
-                        <HoverCardTrigger asChild>
-                          <div className="flex items-center text-sm text-[#64ffda] cursor-pointer">
-                            <FileText className="h-4 w-4 mr-1" />
-                            <span>{t("projects.lessonsLearned")}</span>
-                          </div>
-                        </HoverCardTrigger>
-                        <HoverCardContent className="w-80">
-                          <p className="text-sm text-gray-700 dark:text-gray-200">
-                            {project.lessons[language]}
-                          </p>
-                        </HoverCardContent>
-                      </HoverCard>
-                    )}
-                  </CardContent>
+                    <div className="mt-4 flex flex-wrap gap-4">
+                      {project.demo && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="group/button"
+                          asChild
+                        >
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <ExternalLink className="h-4 w-4 mr-1 group-hover/button:text-[#64ffda] transition-colors" />
+                            <span className="group-hover/button:text-[#64ffda] transition-colors">
+                              {t("projects.demo")}
+                            </span>
+                          </a>
+                        </Button>
+                      )}
 
-                  <CardFooter
-                    className={cn(
-                      "flex justify-between",
-                      !project.demo && "justify-end"
-                    )}
-                  >
-                    {project.demo && (
                       <Button
                         variant="outline"
                         size="sm"
@@ -178,36 +213,41 @@ const Projects: React.FC = () => {
                         asChild
                       >
                         <a
-                          href={project.demo}
+                          href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <ExternalLink className="h-4 w-4 mr-1 group-hover/button:text-[#64ffda] transition-colors" />
+                          <Github className="h-4 w-4 mr-1 group-hover/button:text-[#64ffda] transition-colors" />
                           <span className="group-hover/button:text-[#64ffda] transition-colors">
-                            {t("projects.demo")}
+                            GitHub
                           </span>
                         </a>
                       </Button>
-                    )}
 
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="group/button"
-                      asChild
-                    >
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <Collapsible
+                        open={openItems[index]}
+                        onOpenChange={() => toggleItem(index)}
                       >
-                        <Github className="h-4 w-4 mr-1 group-hover/button:text-[#64ffda] transition-colors" />
-                        <span className="group-hover/button:text-[#64ffda] transition-colors">
-                          GitHub
-                        </span>
-                      </a>
-                    </Button>
-                  </CardFooter>
+                        <CollapsibleTrigger asChild>
+                          <div className="flex items-center text-sm text-[#64ffda] cursor-pointer">
+                            <FileText className="h-4 w-4 mr-1" />
+                            <span>{t("projects.lessonsLearned")}</span>
+                          </div>
+                        </CollapsibleTrigger>
+
+                        <div
+                          ref={(el) => (contentRefs.current[index] = el)}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-4 max-h-[160px] overflow-y-auto custom-scrollbar">
+                            <p className="text-sm text-gray-700 dark:text-gray-200">
+                              {project.lessons[language]}
+                            </p>
+                          </div>
+                        </div>
+                      </Collapsible>
+                    </div>
+                  </CardContent>
                 </Card>
               ))}
             </div>

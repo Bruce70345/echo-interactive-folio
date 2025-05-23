@@ -126,7 +126,6 @@ export const highlightKeywords = (text: string, language: string) => {
       "Detail-oriented",
       "organized",
       "meticulous",
-      "AI",
       "Robotics",
       "Web Development",
       "fast pace",
@@ -142,6 +141,15 @@ export const highlightKeywords = (text: string, language: string) => {
       "CO2 emissions",
       "Python",
       "TensorFlow",
+      "development",
+      "research",
+      "web design",
+      "implementation",
+      "testing",
+      "optimization",
+      "analysis",
+      "collaboration",
+      "leadership",
     ],
     zh: [
       "細心",
@@ -163,6 +171,15 @@ export const highlightKeywords = (text: string, language: string) => {
       "二氧化碳排放",
       "Python",
       "TensorFlow",
+      "開發",
+      "研究",
+      "網頁設計",
+      "實現",
+      "測試",
+      "優化",
+      "分析",
+      "協作",
+      "領導",
     ],
     it: [
       "orientato ai dettagli",
@@ -184,12 +201,20 @@ export const highlightKeywords = (text: string, language: string) => {
       "emissioni di CO2",
       "Python",
       "TensorFlow",
+      "web sviluppo",
+      "ricerca",
+      "progettazione",
+      "implementazione",
+      "testing",
+      "ottimizzazione",
+      "analisi",
+      "collaborazione",
+      "leadership",
     ],
     mi: [
       "aro ana ki nga taipitopito",
       "whakaritea",
       "tika",
-      "AI",
       "Robotics",
       "Whakawhanake Tukutuku",
       "kato tere",
@@ -204,25 +229,39 @@ export const highlightKeywords = (text: string, language: string) => {
       "tukunga CO2",
       "Python",
       "TensorFlow",
+      "whakawhanake",
+      "rangahau",
+      "hoahoa",
+      "whakatinanatanga",
+      "whakamātautau",
+      "whakapai",
+      "tātari",
+      "mahi tahi",
+      "rangatiratanga",
     ],
   };
 
   // 獲取當前語言的關鍵詞
   const currentKeywords = keywords[language] || [];
 
-  // 替換關鍵詞為帶有黃色樣式的 span
+  // 替換關鍵詞為帶有高亮樣式的 span
   let highlightedText = text;
 
+  // 首先處理 "AI" 的特殊情況
+  highlightedText = highlightedText.replace(
+    /\bAI\b/g,
+    '<span style="color: #ffda64">AI</span>'
+  );
+
+  // 然後處理其他關鍵詞
   currentKeywords.forEach((keyword) => {
-    // 使用正則表達式做不區分大小寫的替換
-    const regex = new RegExp(`(${keyword})`, "gi");
+    // 使用正則表達式做不區分大小寫的替換，但確保是完整的單詞
+    const regex = new RegExp(`\\b(${keyword})\\b`, "gi");
     highlightedText = highlightedText.replace(
       regex,
-      '<span class="text-[#ffda64]">$1</span>'
+      '<span style="color: #ffda64">$1</span>'
     );
   });
 
-  return React.createElement("span", {
-    dangerouslySetInnerHTML: { __html: highlightedText },
-  });
+  return highlightedText;
 };
