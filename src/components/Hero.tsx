@@ -145,7 +145,7 @@ const Hero: React.FC = () => {
               className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center lg:absolute lg:top-[30%] lg:right-[20%] lg:w-[20%]"
               onClick={handleAvatarClick}
             >
-              <img src="src/data/Square-FakeAvatar.png" alt="Avatar" />
+              <img src="/Square-FakeAvatar.png" alt="Avatar" />
             </div>
           </div>
         </div>
