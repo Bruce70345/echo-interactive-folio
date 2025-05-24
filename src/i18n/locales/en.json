@@ -59,5 +59,18 @@
   "notFound": {
     "message": "Oops! Page not found",
     "returnHome": "Return to Home"
+  },
+  "categories": {
+    "all": "All",
+    "programming": "Programming",
+    "ai_ml": "AI & Machine Learning",
+    "web_api": "Web & API",
+    "database": "Database",
+    "testing_vc": "Testing & Version Control",
+    "robotics_vision": "Robotics & Computer Vision"
+  },
+  "greetings": {
+    "hello": "Hello",
+    "welcome": "Welcome to my portfolio"
   }
 } 

@@ -25,9 +25,12 @@
     "title": "Progetti",
     "categories": {
       "all": "Tutti",
-      "ai": "AI",
-      "web": "Web",
-      "robotics": "Robotica"
+      "programming": "Programmazione",
+      "ai_ml": "AI & Machine Learning",
+      "web_api": "Web & API",
+      "database": "Database",
+      "testing_vc": "Testing & Controllo Versione",
+      "robotics_vision": "Robotica & Visione Artificiale"
     },
     "lessonsLearned": "Lezioni apprese",
     "demo": "Demo"
@@ -59,5 +62,9 @@
   "notFound": {
     "message": "Oops! Pagina non trovata",
     "returnHome": "Torna alla Home"
+  },
+  "greetings": {
+    "hello": "Ciao",
+    "welcome": "Benvenuto nel mio portfolio"
   }
 } 

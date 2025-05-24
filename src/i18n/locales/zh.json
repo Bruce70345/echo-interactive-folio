@@ -25,9 +25,12 @@
     "title": "專案",
     "categories": {
       "all": "全部",
-      "ai": "人工智能",
-      "web": "網頁",
-      "robotics": "機器人"
+      "programming": "程式設計",
+      "ai_ml": "人工智能與機器學習",
+      "web_api": "網頁與API",
+      "database": "資料庫",
+      "testing_vc": "測試與版本控制",
+      "robotics_vision": "機器人與電腦視覺"
     },
     "lessonsLearned": "學習心得",
     "demo": "演示"
@@ -59,5 +62,9 @@
   "notFound": {
     "message": "糟糕！找不到頁面",
     "returnHome": "返回首頁"
+  },
+  "greetings": {
+    "hello": "你好",
+    "welcome": "歡迎來到我的作品集"
   }
 } 

@@ -91,7 +91,7 @@ const NavBar: React.FC<NavBarProps> = ({ sections }) => {
 
           <LanguageSwitcher />
 
-          <button
+          {/* <button
             onClick={toggleTheme}
             className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-[#64ffda] dark:hover:text-[#64ffda]"
             aria-label={
@@ -105,7 +105,7 @@ const NavBar: React.FC<NavBarProps> = ({ sections }) => {
             ) : (
               <Sun className="h-5 w-5" />
             )}
-          </button>
+          </button> */}
         </div>
       </div>
     </nav>

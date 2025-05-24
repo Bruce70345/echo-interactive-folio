@@ -91,7 +91,7 @@ const Hero: React.FC = () => {
 
     const intervalId = setInterval(() => {
       heroAnimation();
-    }, 10000);
+    }, 20000);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -136,17 +136,17 @@ const Hero: React.FC = () => {
       <div className="flex flex-row w-full justify-end">
         <div className="w-[50%] md:w-[25%] self-end">
           <div className="relative lg:static">
-          <SpeechBubble
-            className="lg:hidden"
-            show={showGreeting}
-            onHide={() => setShowGreeting(false)}
-          />
-          <div
-            className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center lg:absolute lg:top-[30%] lg:right-[20%] lg:w-[20%]"
-            onClick={handleAvatarClick}
-          >
-            <img src="src/data/Square-FakeAvatar.png" alt="Avatar" />
-          </div>
+            <SpeechBubble
+              className="lg:hidden"
+              show={showGreeting}
+              onHide={() => setShowGreeting(false)}
+            />
+            <div
+              className="aspect-square rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800 flex items-center justify-center lg:absolute lg:top-[30%] lg:right-[20%] lg:w-[20%]"
+              onClick={handleAvatarClick}
+            >
+              <img src="src/data/Square-FakeAvatar.png" alt="Avatar" />
+            </div>
           </div>
         </div>
       </div>

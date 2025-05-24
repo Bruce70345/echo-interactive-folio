@@ -32,12 +32,17 @@ const LanguageSwitcher: React.FC = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon" className="rounded-full">
+        <div
+          // variant="ghost"
+          // size="icon"
+          className="rounded-full bg-transparent dark:bg-transparent border-none"
+        >
           <Languages className="h-[1.2rem] w-[1.2rem]" />
           <span className="sr-only">Switch Language</span>
-        </Button>
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
+        {/* focus:text-foreground-transparent */}
         {languageOptions.map((option) => (
           <DropdownMenuItem
             key={option.value}

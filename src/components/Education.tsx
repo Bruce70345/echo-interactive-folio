@@ -23,8 +23,8 @@ const Education: React.FC = () => {
       (entries) => {
         if (entries[0].isIntersecting) {
           animate(
-          ".education-card",
-            
+            ".education-card",
+
             {
               opacity: [0, 1],
               translateY: [20, 0],
