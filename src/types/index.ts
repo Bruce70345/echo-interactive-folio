@@ -35,9 +35,9 @@ export interface LanguageString {
 
 export interface LanguageText {
   en: string;
-  zh: string;
-  it: string;
-  mi: string;
+  zh?: string;
+  it?: string;
+  mi?: string;
 }
 
 export interface Project {
@@ -45,7 +45,7 @@ export interface Project {
   name: string;
   description: LanguageText;
   technologies: string[];
-  category: "AI" | "Web" | "Robotics";
+  category: string;
   image: string;
   github: string;
   demo?: string;

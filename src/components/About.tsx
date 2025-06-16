@@ -85,7 +85,7 @@ const About: React.FC = () => {
   useEffect(() => {
     const targetContent = document.querySelector(".about-content");
     const shapeElements = document.querySelectorAll(".shape");
-  
+
     if (isInView) {
       // 進入視窗，觸發動畫
       animate(targetContent, {
@@ -94,7 +94,7 @@ const About: React.FC = () => {
         easing: "outExpo",
         duration: 1000,
       });
-  
+
       animate(shapeElements, {
         x: () => utils.random(-100, 100),
         y: () => utils.random(-100, 100),
@@ -110,7 +110,6 @@ const About: React.FC = () => {
       shapeElements.forEach((el) => utils.remove(el));
     }
   }, [isInView]);
-  
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout;
@@ -160,7 +159,7 @@ const About: React.FC = () => {
 
           <button
             onClick={() => setExpanded(!expanded)}
-            className="mt-4 flex items-center text-[#64ffda] hover:text-[#64ffda]/80 transition-colors"
+            className="mt-4 flex items-center text-[#eba427] hover:text-[#eba427]/80 transition-colors"
           >
             {t("about.readMore")}
             <ChevronDown
@@ -185,24 +184,24 @@ const About: React.FC = () => {
           }`}
         >
           <div className="flex grid grid-cols-8 md:grid-cols-10 lg:grid-cols-12 items-center justify-start sm:justify-center flex-wrap gap-2 overflow-hidden">
-            <div className="shape col-span-1 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-1 w-10 h-10 rounded-full border-2 border-[#eba427]"></div>
             <div className="shape col-span-2 w-10 h-10 bg-[#ffda64]"></div>
-            <div className="shape col-span-2 w-10 h-10 border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 border-2 border-[#eba427]"></div>
             <div className="shape col-span-2 w-10 h-10 rounded-full bg-[#ffda64]"></div>
-            <div className="shape col-span-2 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 rounded-full border-2 border-[#eba427]"></div>
             <div className="shape col-span-2 w-10 h-10 bg-[#ffda64]"></div>
             <div className="shape col-span-2 w-10 h-10 border-2 border-[#ffda64]"></div>
-            <div className="shape col-span-2 w-10 h-10 rounded-full bg-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 rounded-full bg-[#eba427]"></div>
             <div className="shape col-span-2 w-10 h-10 rounded-full bg-[#ffda64]"></div>
             <div className="shape col-span-2 w-10 h-10 bg-[#ffda64]"></div>
-            <div className="shape col-span-2 w-10 h-10 border-2 border-[#64ffda]"></div>
-            <div className="shape col-span-5 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape col-span-2 w-10 h-10 border-2 border-[#eba427]"></div>
+            <div className="shape col-span-5 w-10 h-10 rounded-full border-2 border-[#eba427]"></div>
             <div className="shape col-span-5 w-10 h-10 rounded-full border-2 border-[#ffda64]"></div>
-            <div className="shape hidden lg:block col-span-5 w-10 h-10 rounded-full border-2 border-[#64ffda]"></div>
+            <div className="shape hidden lg:block col-span-5 w-10 h-10 rounded-full border-2 border-[#eba427]"></div>
             <div className="shape hidden lg:block col-span-5 w-10 h-10 rounded-full border-2 border-[#ffda64]"></div>
-            <div className="shape hidden lg:block col-span-3 w-10 h-10 bg-[#64ffda]"></div>
+            <div className="shape hidden lg:block col-span-3 w-10 h-10 bg-[#eba427]"></div>
             <div className="shape hidden lg:block col-span-3 w-10 h-10 border-2 border-[#ffda64]"></div>
-            <div className="shape hidden lg:block col-span-3 w-10 h-10 bg-[#64ffda]"></div>
+            <div className="shape hidden lg:block col-span-3 w-10 h-10 bg-[#eba427]"></div>
             <div className="shape hidden lg:block col-span-3 w-10 h-10 border-2 border-[#ffda64]"></div>
           </div>
         </div>

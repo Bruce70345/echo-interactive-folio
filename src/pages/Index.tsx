@@ -50,7 +50,7 @@ const Index: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-[#0a192f] transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-[#273f4a] transition-colors duration-300">
       <NavBar sections={sections} />
       <Hero />
       <About />

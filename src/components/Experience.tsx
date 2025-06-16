@@ -109,7 +109,7 @@ const Experience: React.FC = () => {
               )}
             >
               {/* Timeline dot */}
-              <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-[#64ffda] transform -translate-x-1/2 z-10"></div>
+              <div className="absolute left-0 md:left-1/2 w-4 h-4 rounded-full bg-[#eba427] transform -translate-x-1/2 z-10"></div>
 
               <div
                 className={cn(
@@ -139,7 +139,7 @@ const Experience: React.FC = () => {
                         <span>{exp.period[language]}</span>
                       </div>
 
-                      <p className="text-[#64ffda] mt-2 text-start">
+                      <p className="text-[#eba427] mt-2 text-start">
                         {exp.role[language]}
                       </p>
                     </div>
@@ -169,7 +169,7 @@ const Experience: React.FC = () => {
                       </div>
                     </div>
 
-                    <CollapsibleTrigger className="w-full mt-3 text-sm text-[#64ffda] hover:text-[#64ffda]/80">
+                    <CollapsibleTrigger className="w-full mt-3 text-sm text-[#eba427] hover:text-[#eba427]/80">
                       {openItems[index]
                         ? t("experience.showLess")
                         : t("experience.showMore")}

@@ -78,7 +78,7 @@ const Education: React.FC = () => {
 
             <CardContent className="space-y-4">
               <div>
-                <h4 className="text-lg font-medium text-[#64ffda]">
+                <h4 className="text-lg font-medium text-[#eba427]">
                   {edu.degree[language]}
                 </h4>
                 <div className="text-sm text-gray-600 dark:text-gray-300">

@@ -12,9 +12,9 @@ import { useTranslation } from "react-i18next";
 
 const languageOptions = [
   { value: "en", label: "English", flag: "🇬🇧" },
-  { value: "mi", label: "Te Reo Māori", flag: "🇳🇿" },
-  { value: "it", label: "Italiano", flag: "🇮🇹" },
-  { value: "zh", label: "繁體中文", flag: "🇹🇼" },
+  { value: "de", label: "German", flag: "🇩🇪" },
+  { value: "pt", label: "Portuguese", flag: "🇵🇹" },
+  { value: "fr", label: "French", flag: "🇫🇷" },
 ];
 
 const LanguageSwitcher: React.FC = () => {

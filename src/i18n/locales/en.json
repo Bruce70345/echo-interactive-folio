@@ -1,36 +1,36 @@
 {
   "hero": {
-    "title": "Software Engineer",
+    "title": "Marketing Specialist",
     "location": "Taipei, Taiwan",
-    "tagline": "AI and Robotics Enthusiast with a Passion for Clean Code.",
+    "tagline": "Storyteller Driven by Strategy and Data.",
     "buttons": {
       "linkedin": "LinkedIn",
-      "github": "GitHub"
+      "github": "Portfolio"
     }
   },
   "skills": {
-    "title": "Skills",
-    "years": "Years"
+    "title": "Core Competencies",
+    "years": "Years of Experience"
   },
   "education": {
     "title": "Education",
-    "thesis": "Thesis:"
+    "thesis": "Thesis/Project:"
   },
   "experience": {
-    "title": "Experience",
+    "title": "Professional Experience",
     "showMore": "Show more",
     "showLess": "Show less"
   },
   "projects": {
-    "title": "Projects",
+    "title": "Campaigns & Projects",
     "categories": {
       "all": "All",
-      "ai": "AI",
-      "web": "Web",
-      "robotics": "Robotics"
+      "ai": "AI Marketing",
+      "web": "Digital Marketing",
+      "robotics": "Event Marketing"
     },
-    "lessonsLearned": "Lessons learned",
-    "demo": "Demo"
+    "lessonsLearned": "Key Takeaways",
+    "demo": "View Campaign"
   },
   "languages": {
     "title": "Languages",
@@ -47,7 +47,7 @@
     "readMore": "Read more"
   },
   "contact": {
-    "title": "Contact"
+    "title": "Get in Touch"
   },
   "footer": {
     "allRightsReserved": "All rights reserved"
@@ -62,15 +62,15 @@
   },
   "categories": {
     "all": "All",
-    "programming": "Programming",
-    "ai_ml": "AI & Machine Learning",
-    "web_api": "Web & API",
-    "database": "Database",
-    "testing_vc": "Testing & Version Control",
-    "robotics_vision": "Robotics & Computer Vision"
+    "programming": "Marketing Strategy",
+    "ai_ml": "AI & Marketing Automation",
+    "web_api": "Digital Campaigns",
+    "database": "CRM & Analytics",
+    "testing_vc": "A/B Testing & Optimization",
+    "robotics_vision": "Event & Experiential Marketing"
   },
   "greetings": {
-    "hello": "Hello",
-    "welcome": "Welcome to my portfolio"
+    "hello": "Hi there!",
+    "welcome": "Welcome to my marketing portfolio"
   }
-} 
+}

@@ -152,7 +152,7 @@ const Projects: React.FC = () => {
                   className="project-card opacity-0 group hover:shadow-lg transition-all duration-300 border-[1px] border-gray-200 dark:border-gray-800"
                 >
                   <CardHeader className="pb-2">
-                    <CardTitle className="text-xl font-semibold text-gray-800 dark:text-[#64ffda] text-[#64ffda] transition-colors">
+                    <CardTitle className="text-xl font-semibold text-gray-800 dark:text-[#eba427] text-[#eba427] transition-colors">
                       {project.name}
                     </CardTitle>
                     <CardDescription>
@@ -198,8 +198,8 @@ const Projects: React.FC = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <ExternalLink className="h-4 w-4 mr-1 group-hover/button:text-[#64ffda] transition-colors" />
-                            <span className="group-hover/button:text-[#64ffda] transition-colors">
+                            <ExternalLink className="h-4 w-4 mr-1 group-hover/button:text-[#eba427] transition-colors" />
+                            <span className="group-hover/button:text-[#eba427] transition-colors">
                               {t("projects.demo")}
                             </span>
                           </a>
@@ -217,8 +217,8 @@ const Projects: React.FC = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <Github className="h-4 w-4 mr-1 group-hover/button:text-[#64ffda] transition-colors" />
-                          <span className="group-hover/button:text-[#64ffda] transition-colors">
+                          <Github className="h-4 w-4 mr-1 group-hover/button:text-[#eba427] transition-colors" />
+                          <span className="group-hover/button:text-[#eba427] transition-colors">
                             GitHub
                           </span>
                         </a>
@@ -229,7 +229,7 @@ const Projects: React.FC = () => {
                         onOpenChange={() => toggleItem(index)}
                       >
                         <CollapsibleTrigger asChild>
-                          <div className="flex items-center text-sm text-[#64ffda] cursor-pointer">
+                          <div className="flex items-center text-sm text-[#eba427] cursor-pointer">
                             <FileText className="h-4 w-4 mr-1" />
                             <span>{t("projects.lessonsLearned")}</span>
                           </div>

@@ -301,7 +301,7 @@ const Skills: React.FC = () => {
                     onTouchEnd={() => handleCardPressEnd(skill.name)}
                   >
                     <CardHeader className="flex flex-row items-center justify-between pb-2 space-y-0">
-                      <CardTitle className="text-sm font-medium flex items-center text-[#64ffda]">
+                      <CardTitle className="text-sm font-medium flex items-center text-[#eba427]">
                         {getSkillIcon(skill.name)}
                         {skill.name}
                       </CardTitle>

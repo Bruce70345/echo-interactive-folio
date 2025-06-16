@@ -60,15 +60,16 @@ const NavBar: React.FC<NavBarProps> = ({ sections }) => {
       className={cn(
         "fixed top-0 w-full px-6 md:px-12 py-4 z-50 transition-all duration-300",
         isScrolled
-          ? "bg-white/90 dark:bg-[#0a192f]/90 shadow-md backdrop-blur-md"
+          ? "bg-white/90 dark:bg-[#273f4a]/90 shadow-md backdrop-blur-md"
           : "bg-transparent"
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="text-xl md:text-2xl font-bold dark:text-white noselect"
-            onClick={() => scrollToSection("hero")}
-          >
-            CODE x LIFE
+        <div
+          className="text-xl md:text-2xl font-bold dark:text-white noselect"
+          onClick={() => scrollToSection("hero")}
+        >
+          Brand x People
         </div>
 
         <div className="flex items-center space-x-1 md:space-x-4">
@@ -80,8 +81,8 @@ const NavBar: React.FC<NavBarProps> = ({ sections }) => {
                 className={cn(
                   "px-2 py-1 rounded-md transition-colors",
                   activeSection === section.id
-                    ? "text-[#64ffda] dark:text-[#64ffda]"
-                    : "text-gray-600 dark:text-gray-300 hover:text-[#64ffda] dark:hover:text-[#64ffda]"
+                    ? "text-[#eba427] dark:text-[#eba427]"
+                    : "text-gray-600 dark:text-gray-300 hover:text-[#eba427] dark:hover:text-[#eba427]"
                 )}
               >
                 {section.title}
@@ -93,7 +94,7 @@ const NavBar: React.FC<NavBarProps> = ({ sections }) => {
 
           {/* <button
             onClick={toggleTheme}
-            className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-[#64ffda] dark:hover:text-[#64ffda]"
+            className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-[#eba427] dark:hover:text-[#eba427]"
             aria-label={
               theme === "light"
                 ? t("theme.switchToDark")

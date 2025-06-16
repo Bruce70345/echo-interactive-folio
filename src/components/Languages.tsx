@@ -149,7 +149,7 @@ const Languages: React.FC = () => {
                     (progressBarsRef.current[`progress-${index}`] = el)
                   }
                   data-target-width={targetWidth}
-                  className="h-full bg-[#64ffda] rounded-full"
+                  className="h-full bg-[#eba427] rounded-full"
                   style={{ width: "0%" }}
                 ></div>
               </div>
